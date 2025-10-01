@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Competitions and Events | KRC Carnival</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: transparent;
+      margin: 0;
+      font-family: "Share Tech Mono", monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    #bgvi {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      background: #39383A;
+    }
+    .wrapper {
+      background: #dee0e82f;
+      border-radius: 22px;
+      padding: 24px 22px;
+      max-width: 1220px;
+      width: 95vw;
+      display: grid;
+      gap: 14px 14px;
+      backdrop-filter: blur(12px);
+      grid-template-columns: 2fr 1.1fr 1.1fr 1.3fr;
+      grid-template-rows: 150px 180px 110px 160px;
+      grid-template-areas:
+        "headline stats lfr hackathon"
+        "headline stats micromouse hackathon"
+        "headline stats roborace showcasing"
+        "headline info roborace showcasing";
+    }
+    .headline {
+      grid-area: headline;
+      background: #f3f3f6;
+      border-radius: 13px;
+      box-shadow: 0 2px 19px #19193913;
+      padding: 28px 40px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      background-image: url('/assets/nobglogo.png');
+      background-size: 50px;
+      background-position: bottom right;
+      background-repeat: no-repeat;
+    }
+    .headline h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.35em;
+      margin: 0 0 18px 0;
+      color: #23252D;
+      letter-spacing: 2.8px;
+    }
+    .headline .subrow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.11em;
+      margin-bottom: 6px;
+      color: #4a4853;
+    }
+    .barcode {
+      height: 28px;
+      width: 120px;
+      background: linear-gradient(90deg,#ddd 28%,#232 35%,#eee 72%);
+      border-radius: 3px;
+      margin: 10px 0 14px 0;
+    }
+    .headline .year-label {
+      letter-spacing: 2px;
+      color: #747883;
+      font-size: .97em;
+    }
+    .stats {
+      grid-area: stats;
+      background: #232b42;
+      color: #fff;
+      border-radius: 14px;
+      box-shadow: 0 1px 15px #242e5164 inset;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* changed to flex-start to shift content up */
+      align-items: center;
+      padding: 10px 0 20px 0; /* adjusted padding to shift content */
+      font-family: 'Orbitron', monospace;
+    }
+    .stats .label {
+      font-size: 1.8em; /* increased size */
+      margin-bottom: 10px;
+      margin-top: 100px; /* added margin top to separate from top */
+      color: #a0c7ff;
+      text-align: center;
+      font-weight: 700;
+    }
+    .stats .meter {
+      font-size: 1.7em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    
+
+    /* Red and blue glitch layers */
+    .countdown::before,
+    .countdown::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      clip: rect(0, 900px, 0, 0);
+    }
+
+    .countdown::before {
+      left: 2px;
+      text-shadow: -2px 0 red;
+      animation: countdown 2s infinite linear alternate-reverse;
+    }
+
+    .countdown::after {
+      left: -2px;
+      text-shadow: -2px 0 cyan;
+      animation: countdown 1.5s infinite linear alternate-reverse;
+    }
+
+    @keyframes countdown {
+      0% { clip: rect(10px, 9999px, 40px, 0); }
+      20% { clip: rect(60px, 9999px, 80px, 0); }
+      40% { clip: rect(20px, 9999px, 60px, 0); }
+      60% { clip: rect(80px, 9999px, 100px, 0); }
+      80% { clip: rect(30px, 9999px, 70px, 0); }
+      100% { clip: rect(50px, 9999px, 90px, 0); }
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.8; }
+    }
+    .stats .circle {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: radial-gradient(circle,#253254 62%,#0a0a0a 100%);
+      margin: 0 0 15px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1em;
+      color: #fff;
+      position: relative;
+    }
+    .stats .circle::after {
+      content: '';
+      width: 52px;
+      height: 2px;
+      background: #eb1f28;
+      position: absolute;
+      left: 12px;
+      bottom: 34px;
+      transform: rotate(-17deg);
+    }
+    .countdown {
+      margin-top: 6px;
+      color: #a0c7ff;
+      font-size: 2em;
+      font-family: 'Orbitron', monospace;
+      position: relative;
+      /* font-weight: bold;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px; */
+      animation: flicker 2s infinite;
+    }
+    .card {
+      position: relative;
+      border-radius: 13px;
+      box-shadow: 0 2px 18px #2b082944 inset;
+      background: #fdf7f0;
+      padding: 14px 18px 9px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 105px;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .showcasing {
+      grid-area: showcasing;
+      border-left: 10px solid #39a15a;
+      background-image: linear-gradient(rgba(77, 77, 77, 0.55), rgba(57, 161, 90, 0.6)),url('/assets/hardware.png');
+      background-size: cover;
+      color: #fcf9fa;
+      min-height: 120px;
+      max-height: 140px;
+    }
+    #card-hackathon {
+      grid-area: hackathon;
+      border-left: 10px solid #ff9900;
+      background-image: linear-gradient(rgba(77, 77, 77, 0.55), rgba(255, 153, 0, 0.6));
+      background-size: cover;
+      color: #fcf9fa;
+      min-height: 210px;
+    }
+    #card-hackathon.expanded {
+      min-height: 300px;
+    }
+    .lfr {
+      grid-area: lfr;
+      border-left: 10px solid #eb1f28;
+      background-image: linear-gradient(rgba(77, 77, 77, 0.55), rgba(212, 20, 29, 0.55)), url('/assets/lfrnew.png');
+      background-size: cover;
+    }
+    .roborace {
+      grid-area: roborace;
+      border-left: 10px solid #0a46ee;
+      position: relative;
+      background-image: linear-gradient(rgba(77, 77, 77, 0.55), rgba(28, 131, 228, 0.55)), url('/assets/car.png');
+      background-size: cover;
+      min-height:150px;
+    }
+    .micromouse {
+      grid-area: micromouse;
+      border-left: 10px solid #eb1f28;
+      background-image: linear-gradient(rgba(77, 77, 77, 0.55), rgba(212, 20, 29, 0.55)), url('/assets/MICROMOUSE.png');
+      background-size: cover;
+      min-height: 150px;
+    }
+    .card-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+      filter: brightness(0.5);
+      border-radius: 13px;
+    }
+    .card > *:not(.card-video) {
+      position: relative;
+      z-index: 1;
+    }
+    .card.expanded {
+      min-height: 230px;
+      box-shadow: 0 8px 34px #db094b52;
+      z-index: 10;
+      padding-bottom: 28px;
+      overflow: visible;
+      transition: min-height 0.35s ease;
+    }
+    .card.contracted {
+      min-height: 65px !important;
+      box-shadow: none !important;
+      opacity: 0.6;
+      padding-top: 10px !important;
+      padding-bottom: 8px !important;
+      pointer-events: none;
+      user-select: none;
+    }
+    .card.lfr .imgbox {
+      background: inherit;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
+      margin: 7px 0 0 0;
+      box-shadow: 0 0 12px #db094b4a;
+      pointer-events: none;
+      user-select: none;
+      transition: transform 0.35s;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .card h2 {
+      font-family: 'Orbitron', monospace;
+      margin: 0 0 7px 0;
+      font-size: 1.16em;
+      color: #23252d;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+    .card.expanded h2 {
+      color: #dbf7e7;
+    }
+    .card .description {
+      font-size: 1em;
+      color: #222;
+      margin-bottom: 7px;
+      margin-top: 1px;
+      user-select: none;
+    }
+    #card-hackathon h2 {
+      color: #fff;
+    }
+    #card-hackathon .description {
+      color: #fff;
+    }
+    .pill-button {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      display: flex;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(219, 9, 75, 0.75);
+      user-select: none;
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      font-size: 0.75em;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(90deg, #db094c, #1f1e1e);
+      backdrop-filter: blur(6px);
+      height: 28px;
+      min-width: 112px;
+      line-height: 28px;
+      cursor: pointer;
+      transition: opacity 0.3s ease, min-width 0.35s ease;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 20;
+    }
+    .card:hover .pill-button {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .pill-button.expanded {
+      min-width: 200px;
+    }
+    .pill-segment {
+      cursor: pointer;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      user-select: none;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.85em;
+      border-left: 1px solid transparent;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .pill-segment:first-child {
+      border-left: none;
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+    }
+    .pill-segment:last-child {
+      border-top-right-radius: 30px;
+      border-bottom-right-radius: 30px;
+      border-left: 1px solid rgba(255,255,255,0.3);
+    }
+    .pill-segment:hover {
+      background: linear-gradient(90deg, #ff4373, #c10744);
+      border-color: rgba(255, 255, 255, 0.7);
+      border-radius: 14px;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+    .pill-button:not(.expanded) .pill-segment:last-child {
+      opacity: 0;
+      width: 0;
+      padding: 0;
+      pointer-events: none;
+      border-left: none;
+      transition: opacity 0.3s ease, width 0.35s ease, padding 0.35s ease;
+    }
+    .wrapper:hover .card {
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+      pointer-events: auto;
+    }
+    .wrapper:hover .card:hover {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      pointer-events: auto;
+    }
+    .card.showcasing {
+      min-height: 230px;
+      box-shadow: 0 8px 34px #db094b52;
+      z-index: 10;
+      padding-bottom: 28px;
+      overflow: visible;
+      transition: min-height 0.35s ease;
+    }
+    
+    /* .card.expanded:not(.showcasing) { transform: none !important;} */
+    #event-info {
+      grid-area: info;
+      padding: 14px 18px;
+      background: rgba(35, 37, 45, 0.541);
+      border-radius: 13px;
+      color: #fcf9fa;
+      font-family: 'Share Tech Mono', monospace;
+      box-shadow: 0 2px 10px #2b082944 inset;
+      line-height: 1.5;
+      font-size: 1.1em;
+      user-select: none;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    #event-info h3 {
+      margin: 0 0 8px 0;
+      font-family: 'Orbitron', monospace;
+      font-size: 1.4em;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+    }
+    #event-info.expanded {
+      max-height: 150px;
+    }
+    /* #event-info.clipped {
+      max-height: 50px;
+    } */
+    @media (max-width: 1030px) {
+      .wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto auto auto auto;
+        grid-template-areas:
+          "headline"
+          "stats"
+          "lfr"
+          "micromouse"
+          "roborace"
+          "showcasing"
+          "hackathon"
+          "info";
+        padding: 12px 5px;
+      }
+      .stats, .card, .info, .extra {
+        margin: 0;
+      }
+      .pill-button {
+        min-width: 100px;
+        height: 24px;
+        font-size: 0.7em;
+      }
+      .pill-button.expanded {
+        min-width: 170px;
+      }
+      .pill-segment {
+        font-size: 0.75em;
+        padding: 0 12px;
+      }
+      .card.showcasing, #card-hackathon, .roborace {
+        min-height: 110px;
+        max-height: 170px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bgvi">
+    <source src="assets/bgvi1.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="wrapper">
+    <div class="headline">
+      <h1>COMPETITIONS AND EVENTS</h1>
+      <div class="subrow">
+        <span>INTERFACE</span>
+        <span class="year-label">2025 KRC Carnival</span>
+      </div>
+      <div class="barcode"></div>
+      <div style="margin: 12px 0 0 0; font-size: 1.11em; letter-spacing: 0.7px;">
+        The most electrifying robotics battles and hardware events of the year!
+      </div>
+    </div>
+    <div class="stats">
+      <div class="label">Current Entries</div>
+      <div class="circle">00</div>
+      <div class="meter">Time Left</div>
+      <div class="countdown" id="countdown-timer">00:00:00</div>
+    </div>
+    <div class="card lfr" id="card-lfr">
+      <h2><span style="color: #fcf9fa; font-weight: 900;">LFR Competition</span></h2>
+      <div class="description"><span style="color: rgb(206, 203, 203);">Race your line-follower robot in a neon maze. Speed and logic are everything.</span></div>
+      <div class="imgbox" style="background-image: url('/assets/lfrnbg.png');"></div>
+      <div class="pill-button" tabindex="0">
+        <a href="register.html" class="pill-segment register" target="_blank" rel="noopener noreferrer">Register Now</a>
+        <a href="rulebook.html" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rule Book</a>
+      </div>
+    </div>
+    <div class="card roborace" id="card-roborace">
+      <video class="card-video" autoplay muted loop playsinline>
+        <source src="assets/54859d70cfac779392498a5a8fea8b7e.mp4" type="video/mp4" />
+      </video>
+      <h2 style="color: #fcf9fa;">Roborace</h2>
+      <div class="description" style="color: rgb(206, 203, 203);">
+        The ultimate contest for autonomous robots – fastest, smartest bot wins the track!
+      </div>
+      <div class="pill-button" tabindex="0">
+        <a href="register.html" class="pill-segment register" target="_blank" rel="noopener noreferrer">Register Now</a>
+        <a href="rulebook.html" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rule Book</a>
+      </div>
+    </div>
+    <div class="card micromouse" id="card-micromouse">
+      <h2 style="color: #fcf9fa;">Micromouse</h2>
+      <div class="description" style="color: rgb(206, 203, 203);">
+        Engineer your mouse bot to solve complex mazes at record speed. Pure cyberpunk innovation!
+      </div>
+      <div class="imgbox" style="background-image:url('your_micromouse_image.jpg');"></div>
+      <div class="pill-button" tabindex="0">
+        <a href="register.html" class="pill-segment register" target="_blank" rel="noopener noreferrer">Register Now</a>
+        <a href="rulebook.html" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rule Book</a>
+      </div>
+    </div>
+    <div class="card showcasing" id="card-showcasing">
+      <h2>Hardware Showcasing</h2>
+      <div class="description" style="color: rgb(255 249 249 / 0.85);">
+        Display your innovative hardware creations and gain insights and feedback from experts. Exclusive spotlight sessions and interactive demos.
+      </div>
+      <div class="pill-button" tabindex="0">
+        <a href="register.html" class="pill-segment register" target="_blank" rel="noopener noreferrer">Register Now</a>
+        <a href="rulebook.html" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rule Book</a>
+      </div>
+    </div>
+    <div class="card" id="card-hackathon">
+      <h2>Hackathon</h2>
+      <div class="description">
+        Compete in our fast-paced 24-hour hackathon. Bring creativity and coding skills to build innovative solutions!
+      </div>
+      <div class="pill-button" tabindex="0">
+        <a href="register.html" class="pill-segment register" target="_blank" rel="noopener noreferrer">Register Now</a>
+        <a href="rulebook.html" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rule Book</a>
+      </div>
+    </div>
+    <div class="info clipped" id="event-info">
+      <h3>Event Info</h3>
+      AI Integration | Custom Bots | Prizes<br />
+      Date: 15-16 Oct 2025 | Venue: Dinovo Center, USAR<br />
+      Open to all robotics enthusiasts!<br />
+    </div>
+  </div>
+  <script>
+    const lfrCard = document.getElementById('card-lfr');
+    const roboraceCard = document.getElementById('card-roborace');
+    const micromouseCard = document.getElementById('card-micromouse');
+    const showcasingCard = document.getElementById('card-showcasing');
+    const hackathonCard = document.getElementById('card-hackathon');
+    const cardsBelow = {
+      'card-lfr': micromouseCard,
+      'card-micromouse': roboraceCard,
+      'card-roborace': showcasingCard,
+      'card-showcasing': hackathonCard,
+      'card-hackathon': null,
+    };
+    [lfrCard, micromouseCard, roboraceCard, showcasingCard, hackathonCard].forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.classList.add('expanded');
+        const belowCard = cardsBelow[card.id];
+        if (belowCard) belowCard.classList.add('contracted');
+        [lfrCard, micromouseCard, roboraceCard, showcasingCard, hackathonCard].forEach(c => {
+          c.style.opacity = (c === card) ? '1' : '0.5';
+        });
+      });
+      card.addEventListener('mouseleave', () => {
+        card.classList.remove('expanded');
+        const belowCard = cardsBelow[card.id];
+        if (belowCard) belowCard.classList.remove('contracted');
+        [lfrCard, micromouseCard, roboraceCard, showcasingCard, hackathonCard].forEach(c => {
+          c.style.opacity = '1';
+        });
+      });
+    });
+    const countdownElement = document.getElementById('countdown-timer');
+    function updateCountdown() {
+      const now = new Date();
+      const eventDate = new Date('October 12, 2025 00:00:00');
+      const diff = eventDate - now;
+      if (diff <= 0) {
+        countdownElement.textContent = "0:0:0";
+        clearInterval(countdownInterval);
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      countdownElement.textContent = `${days}d ${hours}h ${minutes}m`;
+    }
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+    const eventInfo = document.getElementById('event-info');
+    eventInfo.addEventListener('mouseenter', () => {
+      eventInfo.classList.remove('clipped');
+      eventInfo.classList.add('expanded');
+    });
+    eventInfo.addEventListener('mouseleave', () => {
+      eventInfo.classList.add('clipped');
+      eventInfo.classList.remove('expanded');
+    });
+    document.querySelectorAll('.pill-button').forEach(pill => {
+      pill.addEventListener('click', e => {
+        if(e.target.tagName === 'A') return;
+        pill.classList.toggle('expanded');
+      });
+      document.addEventListener('click', e => {
+        if (!pill.contains(e.target)) {
+          pill.classList.remove('expanded');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

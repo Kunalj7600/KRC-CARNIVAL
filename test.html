@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRC Carnival - Karuyantra Robotics Club</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #ff0040;
+            --secondary: #00ffff;
+            --accent: #7000ff;
+            --dark: #0a0e1a;
+            --gray: #1a1f2e;
+            --light-gray: #2a3142;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-outline {
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline:hover {
+            background: #fff;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        #home {
+            min-height: 100vh;
+            padding: 120px 5% 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            z-index: 2;
+        }
+        
+        .hero-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+        }
+        
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+            transition: all 0.3s;
+        }
+        
+        .hero-cta:hover {
+            background: #fff;
+            color: var(--dark);
+            transform: translateX(5px);
+        }
+        
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero-visual::before {
+            content: 'KRC';
+            position: absolute;
+            font-size: 15rem;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.3);
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .tech-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255, 255, 255, 0.03) 50px, rgba(255, 255, 255, 0.03) 51px),
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255, 255, 255, 0.03) 50px, rgba(255, 255, 255, 0.03) 51px);
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        /* Data Card */
+        .data-card {
+            position: absolute;
+            background: rgba(10, 14, 26, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .data-card.top-left {
+            top: 20px;
+            left: 20px;
+            width: 200px;
+        }
+        
+        .data-card.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            width: 250px;
+        }
+        
+        .data-label {
+            font-size: 0.75rem;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .data-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        /* Competitions Section */
+        #competitions {
+            padding: 100px 5%;
+            background: var(--gray);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-tag {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .comp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .comp-item {
+            background: var(--dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .comp-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .comp-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .comp-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--light-gray), var(--gray));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .comp-image::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 64, 0.1);
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+        }
+        
+        .comp-content {
+            padding: 2rem;
+        }
+        
+        .comp-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .comp-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .comp-desc {
+            color: #aaa;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .comp-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        /* Hackathon Section */
+        #hackathon {
+            padding: 100px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hackathon-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .hackathon-visual {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hackathon-visual::before {
+            content: '24H';
+            font-size: 12rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.1);
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .time-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(10, 14, 26, 0.9);
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--secondary);
+        }
+        
+        .time-badge span {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .hackathon-info h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        
+        .hackathon-info p {
+            color: #aaa;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-box {
+            background: var(--gray);
+            padding: 1.5rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+        
+        /* About Section */
+        #about {
+            padding: 100px 5%;
+            background: var(--gray);
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-content h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        
+        .about-content p {
+            color: #aaa;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-visual {
+            background: var(--dark);
+            height: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(0, 255, 255, 0.05) 20px, rgba(0, 255, 255, 0.05) 21px),
+                repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(0, 255, 255, 0.05) 20px, rgba(0, 255, 255, 0.05) 21px);
+            animation: gridScan 10s linear infinite;
+        }
+        
+        @keyframes gridScan {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 20px); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            #home {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-visual {
+                height: 400px;
+            }
+            
+            .hackathon-container,
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .comp-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .hackathon-info h2 {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Scroll indicator */
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #666;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">KRC.CORP</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#competitions">Competitions</a></li>
+            <li><a href="#hackathon">Hackathon</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="#" class="btn-outline">LOGIN</a>
+            <a href="#" class="btn-outline">REGISTER</a>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="hero-content">
+            <div class="hero-label">TECH CARNIVAL 2025</div>
+            <h1 class="hero-title">Welcome to the Future of Robotics</h1>
+            <p class="hero-subtitle">Join Karuyantra Robotics Club for an immersive experience in cutting-edge technology, innovation, and competition. Where engineering meets creativity.</p>
+            <a href="#competitions" class="hero-cta">Explore Events</a>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="tech-grid"></div>
+            <div class="data-card top-left">
+                <div class="data-label">EVENT STATUS</div>
+                <div class="data-value">ACTIVE</div>
+            </div>
+            <div class="data-card bottom-right">
+                <div class="data-label">PARTICIPANTS</div>
+                <div class="data-value">500+</div>
+            </div>
+        </div>
+        
+        <div class="scroll-hint">Scroll Down</div>
+    </section>
+
+    <section id="competitions">
+        <div class="section-header">
+            <div class="section-tag">/// COMPETE</div>
+            <h2 class="section-title">Competition Categories</h2>
+        </div>
+        
+        <div class="comp-grid">
+            <div class="comp-item">
+                <div class="comp-image">🏎️</div>
+                <div class="comp-content">
+                    <div class="comp-number">/// 01</div>
+                    <h3 class="comp-title">Line Follower Robot</h3>
+                    <p class="comp-desc">Navigate complex paths with precision and speed. Test your robot's sensor calibration and path optimization algorithms on challenging tracks.</p>
+                    <div class="comp-tags">
+                        <span class="tag">Sensors</span>
+                        <span class="tag">Speed</span>
+                        <span class="tag">Precision</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="comp-item">
+                <div class="comp-image">🐭</div>
+                <div class="comp-content">
+                    <div class="comp-number">/// 02</div>
+                    <h3 class="comp-title">Micromouse Maze</h3>
+                    <p class="comp-desc">Program autonomous navigation through complex mazes. Utilize advanced pathfinding algorithms and real-time decision making for the fastest solve.</p>
+                    <div class="comp-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">Navigation</span>
+                        <span class="tag">Algorithm</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="comp-item">
+                <div class="comp-image">🏁</div>
+                <div class="comp-content">
+                    <div class="comp-number">/// 03</div>
+                    <h3 class="comp-title">Roborace</h3>
+                    <p class="comp-desc">High-speed autonomous racing where engineering excellence meets competitive spirit. Build the ultimate racing machine with optimal power and control.</p>
+                    <div class="comp-tags">
+                        <span class="tag">Racing</span>
+                        <span class="tag">Autonomous</span>
+                        <span class="tag">Power</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hackathon">
+        <div class="hackathon-container">
+            <div class="hackathon-visual">
+                <div class="time-badge">
+                    <span>24:00</span>
+                </div>
+            </div>
+            
+            <div class="hackathon-info">
+                <h2>24-Hour Hackathon Challenge</h2>
+                <p>Push your limits in the ultimate coding marathon. Teams will ideate, develop, and deploy innovative solutions to real-world problems. Access to mentors, cutting-edge tools, and resources throughout the night.</p>
+                <p>From concept to prototype in 24 hours. Will your team rise to the challenge?</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number">24H</div>
+                        <div class="stat-label">Non-Stop Coding</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Teams Expected</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Expert Mentors</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">$5K</div>
+                        <div class="stat-label">Prize Pool</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-header">
+            <div class="section-tag">/// ABOUT US</div>
+            <h2 class="section-title">Karuyantra Robotics Club</h2>
+        </div>
+        
+        <div class="about-container">
+            <div class="about-content">
+                <p>KRC Carnival is the flagship annual tech festival organized by the Karuyantra Robotics Club. We bring together passionate engineers, coders, and innovators to celebrate the convergence of technology and creativity.</p>
+                <p>Our mission is to foster innovation, provide a platform for showcasing technical excellence, and build a community of future-ready technologists who push the boundaries of what's possible in robotics and automation.</p>
+                <p>Join us in shaping the future of technology, one competition at a time.</p>
+            </div>
+            
+            <div class="about-visual"></div>
+        </div>
+    </section>
+
+</body>
+</html>
+
+
+When the Robots compete, the Ideas ignite!<br><br>
+        Join us at KRC Carnival 2k25 for some thrilling competitions. Unleash your creativity and be part of the excitement!
