@@ -194,7 +194,7 @@
     opacity: 0.61;
     }
     /* Responsive: hide left panel for mobile */
-    @media (max-width:880px) {
+    /* @media (max-width:880px) {
     .left-bar { display: none; }
     .panel-content { font-size: 0.87em; }
     a.panel { clip-path: polygon(10% 0,100% 0%,100% 100%,0% 100%); }
@@ -202,7 +202,43 @@
     @media (max-width:600px) {
     a.panel { min-width: 80px; }
     .panel-content { font-size: 0.79em; }
-    }
+    } */
+    @media (max-width: 880px) {
+  .left-bar {
+    display: none;
+  }
+  .panels {
+    overflow-x: hidden; /* Prevent horizontal scroll due to scaling */
+  }
+  a.panel {
+    clip-path: polygon(10% 0, 100% 0%, 100% 100%, 0% 100%);
+    /* Zoom in with scale */
+    transform-origin: center center;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+  .panel-content {
+    font-size: 0.87em;
+    /* Optional: counter scale text or keep as is */
+    transform-origin: center center;
+    transform: scale(1);
+  }
+}
+
+/* For smaller mobile devices */
+@media (max-width: 600px) {
+  a.panel {
+    min-width: 80px;
+    transform: scale(1.15);
+    transform-origin: center center;
+  }
+  .panel-content {
+    font-size: 0.79em;
+    transform-origin: center center;
+    transform: scale(1);
+  }
+}
+
 </style>
 </head>
 <body>
@@ -307,5 +343,14 @@
         });
     });
 </script>
+<script>
+  window.addEventListener('pageshow', event => {
+    if (event.persisted) {
+      // Reload the page to ensure all assets including graphics load properly
+      window.location.reload();
+    }
+  });
+</script>
+
 </body>
 </html>
