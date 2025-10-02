@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRC Carnival - Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --background-color: #0A0A0A;
+            --primary-accent: #FF8C00;
+            --secondary-accent: #00FFFF;
+            --tertiary-accent: #FF00FF;
+            --text-color: #e0e0e0;
+            --card-background: #141414;
+            --border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            cursor: none;
+            overflow: hidden; 
+            perspective: 1000px; 
+        }
+        
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                repeating-linear-gradient(rgba(0,0,0,0) 0, rgba(0,0,0,0.5) 2px, rgba(0,0,0,0) 4px),
+                linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.6));
+            z-index: -1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        body.modal-open { overflow: hidden; }
+
+        .cursor-dot, .cursor-trail {
+            position: fixed; background-color: var(--secondary-accent); border-radius: 50%; pointer-events: none;
+            transform: translate(-50%, -50%); z-index: 10001;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .cursor-dot { width: 8px; height: 8px; } .cursor-trail { width: 8px; height: 8px; }
+
+        .loader-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--background-color); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.5s ease; }
+        .loader { border: 4px solid rgba(255, 255, 255, 0.2); border-left-color: var(--primary-accent); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .page-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            pointer-events: none;
+        }
+        @media (min-width: 768px) {
+            .page-header {
+                padding: 2.5rem 3rem;
+            }
+        }
+         .header-logo {
+            height: 65px;
+            transition: height 0.3s ease;
+            pointer-events: auto;
+        }
+         @media (min-width: 768px) {
+            .header-logo {
+                height: 125px;
+            }
+        }
+
+        .slideshow-container {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            user-select: none;
+        }
+
+        #image-track {
+            display: flex;
+            gap: 8vmin; 
+            flex-shrink: 0; 
+        }
+
+        .gallery-item-wrapper {
+            width: 40vmin;
+            height: 56vmin;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.4s ease;
+            z-index: 2;
+            background: rgba(20, 20, 20, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            will-change: transform;
+        }
+        
+        .gallery-item {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 1;
+        }
+        #image-track {
+        will-change: transform;
+        }
+
+
+        #image-track:hover > .gallery-item-wrapper:hover {
+            transform: scale(1.05) rotateY(0deg);
+        }
+        
+        #image-track:hover > .gallery-item-wrapper:hover .gallery-item {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .gallery-item-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 0.75rem;
+            padding: 2px;
+            background: conic-gradient(from 180deg at 50% 50%, var(--secondary-accent), var(--primary-accent) 25%, var(--tertiary-accent) 50%, var(--primary-accent) 75%, var(--secondary-accent) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: rotate 4s linear infinite paused;
+        }
+        .gallery-item-wrapper:hover::before {
+            opacity: 1;
+            animation-play-state: running;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(10px); z-index: 5000; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5001;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .modal-backdrop.show { opacity: 1; }
+        .modal-content.show { opacity: 1; transform: scale(1); }
+        .modal-img { width: 100%; height: 100%; object-fit: contain; }
+        .modal-info {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 3rem;
+            color: white; opacity: 0; transform: translateY(20px);
+            transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s; 
+            pointer-events: none;
+        }
+        .modal-content.show .modal-info { opacity: 1; transform: translateY(0); }
+        #modal-category {
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--secondary-accent); font-weight: 600;
+            text-shadow: 0 0 8px var(--secondary-accent);
+        }
+        #modal-title-text { font-size: 2rem; font-weight: 700; margin-top: 0.25rem; }
+
+        .modal-nav-btn { position: fixed; top: 50%; transform: translateY(-50%); background-color: rgba(10,10,10,0.7); border: 1px solid var(--border-color); border-radius: 50%; padding: 0.75rem; color: white; transition: background-color 0.2s, transform 0.2s, color 0.2s, box-shadow 0.2s; z-index: 5002; }
+        .modal-nav-btn:hover { background-color: var(--card-background); transform: translateY(-50%) scale(1.1); color: var(--secondary-accent); box-shadow: 0 0 15px var(--secondary-accent); }
+        
+        #modal-close-btn { position: fixed; top: 1.5rem; right: 1.5rem; z-index: 5003; }
+         @media (min-width: 768px) { #modal-close-btn { top: 2rem; right: 2.5rem; } }
+    </style>
+</head>
+<body class="min-h-screen">
+    <video autoplay muted loop playsinline id="background-video">
+        <source src="images/cyberpunk.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+
+    <div class="cursor-dot"></div>
+    <div id="loader" class="loader-wrapper"><div class="loader"></div></div>
+    
+    <header class="page-header">
+        <div class="flex items-center">
+            <img src="images/2025.png" alt="KRC Carnival Logo" class="header-logo mr-4">
+
+        </div>
+
+    </header>
+
+    <main class="slideshow-container">
+        <div id="image-track">
+
+        </div>
+    </main>
+    
+    <div id="modal-backdrop" class="modal-backdrop hidden"></div>
+    <div id="modal-content" class="modal-content hidden">
+        <img id="modal-img" class="modal-img" src="" alt="">
+        <div class="modal-info">
+            <p id="modal-category" class="font-semibold"></p>
+            <h3 id="modal-title-text"></h3>
+        </div>
+        <button id="modal-prev-btn" class="modal-nav-btn left-4 md:left-8"><i data-lucide="arrow-left"></i></button>
+        <button id="modal-next-btn" class="modal-nav-btn right-4 md:right-8"><i data-lucide="arrow-right"></i></button>
+        <button id="modal-close-btn" class="modal-nav-btn"><i data-lucide="x"></i></button>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        window.addEventListener('load', () => {
+            document.getElementById('loader').style.opacity = '0';
+            setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
+        });
+
+        const dot = document.querySelector('.cursor-dot');
+        const trails = []; const trailCount = 5;
+        for (let i = 0; i < trailCount; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            document.body.appendChild(trail);
+            trails.push(trail);
+        }
+        let mouseX = 0, mouseY = 0; let positions = new Array(trailCount).fill({x: 0, y: 0});
+        window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+        function animateTrail() {
+            dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`; let prevX = mouseX; let prevY = mouseY;
+            trails.forEach((trail, index) => {
+                const currentPos = positions[index]; const newX = prevX; const newY = prevY;
+                trail.style.transform = `translate(${currentPos.x}px, ${currentPos.y}px)`;
+                trail.style.opacity = 1 - (index + 1) / (trailCount + 1);
+                trail.style.width = `${8 - index}px`; trail.style.height = `${8 - index}px`;
+
+                positions[index] = { x: currentPos.x + (newX - currentPos.x) * 0.5, y: currentPos.y + (newY - currentPos.y) * 0.5, };
+                prevX = positions[index].x; prevY = positions[index].y;
+            });
+            requestAnimationFrame(animateTrail);
+        }
+        animateTrail();
+
+        const slideshowContainer = document.querySelector('.slideshow-container');
+        const track = document.getElementById("image-track");
+        let animationFrameId;
+        let lastTime = performance.now();
+        let progress = 0;
+        const pixelsPerSecond = 100;
+        const throttleInterval = 16; // ms, approx 60fps
+        let lastUpdate = lastTime;
+                
+
+        function applyCurveEffects() {
+            const galleryItems = track.getElementsByClassName("gallery-item-wrapper");
+            const viewportCenter = window.innerWidth / 2;
+
+            for(const item of galleryItems) {
+                const rect = item.getBoundingClientRect();
+                const itemCenter = rect.left + rect.width / 2;
+                const distanceFromCenter = itemCenter - viewportCenter;
+                
+                const scale = Math.max(1.15 - (Math.abs(distanceFromCenter) / viewportCenter) * 0.3, 0.8);
+
+                const rotation = (distanceFromCenter / viewportCenter) * -20;
+
+                if (!item.matches(':hover')) {
+                    item.style.transform = `rotateY(${rotation}deg) scale(${scale})`;
+                }
+            }
+        }
+
+        function runSlideshow(currentTime) {
+        const elapsed = currentTime - lastTime;
+        lastTime = currentTime;
+
+        progress -= (pixelsPerSecond * elapsed) / 1000;
+        const loopPoint = track.scrollWidth / 2;
+
+        if (progress < -loopPoint) {
+            progress += loopPoint;
+        }
+
+        if (currentTime - lastUpdate > throttleInterval) {
+            track.style.transform = `translateX(${progress}px)`;
+            applyCurveEffects();
+            lastUpdate = currentTime;
+        }
+
+        animationFrameId = requestAnimationFrame(runSlideshow);
+        }
+
+        function setupSlideshow() {
+            const originalItems = [];
+            const totalItems = 36;
+            const categories = ['Competition', 'Team', 'Workshop', 'Project'];
+            const colors = ['FF8C00', '00FFFF', 'FF00FF'];
+
+            for (let i = 1; i <= totalItems; i++) {
+                const category = categories[(i - 1) % categories.length];
+                const color = colors[(i - 1) % colors.length];
+                originalItems.push({
+                    category: category,
+                    title: `Image #${i}`,
+                    src: `images/${i}.jpg`
+                });
+            }
+
+            track.innerHTML = '';
+            const itemsToDisplay = [...originalItems, ...originalItems]; 
+
+            itemsToDisplay.forEach(itemData => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'gallery-item-wrapper';
+                wrapper.dataset.category = itemData.category;
+                wrapper.dataset.title = itemData.title;
+                wrapper.dataset.src = itemData.src;
+
+                wrapper.innerHTML = `
+                    <img class="gallery-item" src="${itemData.src}" draggable="false">
+                `;
+                track.appendChild(wrapper);
+            });
+            
+            attachModalListeners();
+            
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            animationFrameId = requestAnimationFrame(runSlideshow);
+        }
+    
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const modalContent = document.getElementById('modal-content');
+        const modalImg = document.getElementById('modal-img');
+        const modalCategory = document.getElementById('modal-category');
+        const modalTitleText = document.getElementById('modal-title-text');
+        const prevBtn = document.getElementById('modal-prev-btn');
+        const nextBtn = document.getElementById('modal-next-btn');
+        const closeBtn = document.getElementById('modal-close-btn');
+        let currentIndex = 0; let currentGalleryItems = [];
+        
+        function attachModalListeners() {
+            const allItems = document.querySelectorAll('.gallery-item-wrapper');
+            allItems.forEach((item) => {
+                item.addEventListener('click', () => {
+                    const visibleItems = Array.from(document.querySelectorAll('.gallery-item-wrapper'));
+                    const clickedIndex = visibleItems.indexOf(item) % (visibleItems.length / 2);
+                    showModal(clickedIndex);
+                });
+            });
+        }
+
+        function getVisibleItems() { 
+            const allItems = Array.from(document.querySelectorAll('.gallery-item-wrapper'));
+            return allItems.slice(0, allItems.length / 2);
+        }
+        function showModal(index) {
+            currentGalleryItems = getVisibleItems();
+            if (index < 0) index = currentGalleryItems.length - 1;
+            if (index >= currentGalleryItems.length) index = 0;
+            currentIndex = index;
+            const item = currentGalleryItems[currentIndex];
+            modalImg.src = item.dataset.src;
+            modalCategory.textContent = item.dataset.category;
+            modalTitleText.textContent = item.dataset.title;
+            document.body.classList.add('modal-open');
+            modalBackdrop.classList.remove('hidden');
+            modalContent.classList.remove('hidden');
+            setTimeout(() => {
+                modalBackdrop.classList.add('show');
+                modalContent.classList.add('show');
+            }, 10);
+        }
+        function hideModal() {
+            modalBackdrop.classList.remove('show');
+            modalContent.classList.remove('show');
+            setTimeout(() => {
+                document.body.classList.remove('modal-open');
+                modalBackdrop.classList.add('hidden');
+                modalContent.classList.add('hidden');
+            }, 300);
+        }
+        
+        prevBtn.addEventListener('click', () => showModal(currentIndex - 1));
+        nextBtn.addEventListener('click', () => showModal(currentIndex + 1));
+        closeBtn.addEventListener('click', hideModal);
+        
+        modalBackdrop.addEventListener('click', hideModal);
+
+        document.addEventListener('keydown', (e) => {
+             if (!modalBackdrop.classList.contains('hidden')) {
+                if(e.key === 'ArrowLeft') showModal(currentIndex - 1);
+                if(e.key === 'ArrowRight') showModal(currentIndex + 1);
+                if(e.key === 'Escape') hideModal();
+            }
+        });
+
+        setupSlideshow();
+    </script>
+</body>
+</html>
