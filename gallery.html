@@ -344,7 +344,7 @@
                 originalItems.push({
                     category: category,
                     title: `Image #${i}`,
-                    src: `images/${i}.jpg`
+                    src: `assets/${i}.jpg`
                 });
             }
 
@@ -355,7 +355,7 @@
                 const wrapper = document.createElement('div');
                 wrapper.className = 'gallery-item-wrapper';
                 wrapper.dataset.category = itemData.category;
-                wrapper.dataset.title = itemData.title;
+               
                 wrapper.dataset.src = itemData.src;
 
                 wrapper.innerHTML = `
@@ -441,3 +441,4 @@
 </body>
 
 </html>
+
