@@ -13,7 +13,7 @@
     font-family: 'Share Tech Mono', monospace;
     background: transparent;
     /* background-image: url(/assets/bg.png); */
-    transition: opacity 0.5s ease;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
     #bgvi {
   position: fixed;
@@ -36,9 +36,10 @@
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transition: all 0.1s ease;
+            transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
             mix-blend-mode: difference;
         }
+
 
         .cursor-follower {
             width: 40px;
@@ -48,7 +49,7 @@
             position: fixed;
             pointer-events: none;
             z-index: 9998;
-            transition: all 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
     .container {
     display: flex;
@@ -118,7 +119,7 @@
     text-decoration: none;
     color: inherit;
     position: relative;
-    transition: filter 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease, flex 0.4s cubic-bezier(0.7,0,0.2,1);
+    transition: filter 0.55s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.55s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.55s cubic-bezier(0.4, 0, 0.2, 1), flex 0.65s cubic-bezier(0.7,0,0.2,1);
     filter: none;
     }
     a.panel::before {
@@ -131,7 +132,7 @@
       background-position: center;
       filter: blur(5px) brightness(0.);
       transform: scale(1.05);
-      transition: filter 0.4s ease, opacity 0.4s ease;
+      transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 0;
       pointer-events: none;
       opacity: 1;
@@ -145,7 +146,7 @@
     left: 0; right: 0; bottom: 38px;
     z-index: 5;
     pointer-events: none;
-    transition: opacity .4s;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .panel-num {
     font-family: 'Orbitron', sans-serif;
@@ -175,7 +176,7 @@
     }
     .panel.bg3 {
       
-      transition: filter 0.3s ease;
+      transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       z-index: 0;
       background:
@@ -183,30 +184,26 @@
           url('/assets/lfrn.png') center center/cover no-repeat;
     }
     .panel.bg3 .panel-video {
-      
-      filter: blur(6px) brightness(0.7);
-      transition: filter 0.3s ease;
-    }
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0; /* behind content */
+  pointer-events: none; /* make video non-interactive */
+  filter: blur(6px) brightness(0.7);
+  transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
     
     a.panel.bg3:hover .panel-video,
-    a.panel.bg3.active .panel-video {
-      filter: none;
-    }
+a.panel.bg3.active .panel-video {
+  filter: none; /* clear filter on hover/active */
+}
     .panel.bg3 .panel-content {
-      position: relative; 
-      z-index: 10; 
-    }
-    .panel-video {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      object-fit: cover;  
-      z-index: 1;
-      pointer-events: none;
-    }
-    .panel-content {
-      position: relative;
-      z-index: 2;
-    }
+  position: relative;
+  z-index: 10; /* in front of video */
+  pointer-events: none;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
     .panel.bg4 {
     background:
@@ -216,7 +213,7 @@
     .panel.bg5 {
     background:
         linear-gradient(120deg,rgba(55,58,66,0.19) 57%,rgba(0,0,0,0.17) 100%),
-        url('/assets/contactus.png') center center/cover no-repeat;
+        url('/assets/cococontact.png') center center/cover no-repeat;
     }
     a.panel::before {
       filter: blur(5px) brightness(0.7) drop-shadow(0 0 5px #000a);
@@ -235,7 +232,7 @@
     .panel.bg3::before {
       background:
         linear-gradient(120deg,rgba(55,58,66,0.23) 59%,rgba(243, 8, 8, 0.781) 100%),
-        url('/assets/lfrn.png') center center/cover no-repeat;
+        
     }
     .panel.bg3::after {
       content: "";
@@ -245,7 +242,7 @@
       pointer-events: none;
       z-index: 5; /* above video (1), below panel content (10) */
       opacity: 1;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .panel.bg4::before {
       background:
@@ -255,7 +252,7 @@
     .panel.bg5::before {
       background:
         linear-gradient(180deg,rgba(55,58,66,0.19) 57%,rgba(243, 8, 8, 0.781) 100%),
-        url('/assets/contactus.png') center center/cover no-repeat;
+        url('/assets/cococontact.png') center center/cover no-repeat;
     }
     a.panel.active,
     a.panel:hover {
@@ -264,29 +261,32 @@
       filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.863)) brightness(1) grayscale(0);
       /* box-shadow: 0 10px 50px #080808; */
       clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
-
+      transition: flex 0.65s cubic-bezier(0.7,0,0.2,1), z-index 0.65s cubic-bezier(0.7,0,0.2,1), filter 0.65s cubic-bezier(0.7,0,0.2,1), clip-path 0.65s cubic-bezier(0.7,0,0.2,1);
     }
-    a.panel.panel.bg5:hover{
+    a.panel.panel.bg1:hover{
       clip-path: polygon(18% 0,100% 0%,100% 100%,0% 100%);
+      transition: clip-path 0.6s cubic-bezier(0.7,0,0.2,1);
     }
     a.panel:hover::before,
     a.panel.active::before {
       filter: none;
       opacity: 1;
       border: #0002;
+      transition: filter 0.55s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
     }
     a.panel:not(.active):not(:hover) .panel-content {
     opacity: 0.61;
+    transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
     }
     a.panel .panel-content {
       position: relative;
       z-index: 1;
-      transition: color 0.25s ease;
+      transition: color 0.55s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .wrapper:hover a.panel:not(:hover):not(.active) {
       filter: brightness(0.7) grayscale(1);
-      transition: filter 0.3s ease;
+      transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
     }
     /* Responsive: hide left panel for mobile */
@@ -311,7 +311,7 @@
     /* Zoom in with scale */
     transform-origin: center center;
     transform: scale(1.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .panel-content {
     font-size: 0.87em;
@@ -321,12 +321,14 @@
   }
 }
 
+
 /* For smaller mobile devices */
 @media (max-width: 600px) {
   a.panel {
     min-width: 80px;
     transform: scale(1.15);
     transform-origin: center center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .panel-content {
     font-size: 0.79em;
@@ -334,7 +336,10 @@
     transform: scale(1);
   }
 }
- .container {
+
+
+
+.container {
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
@@ -344,7 +349,88 @@
   max-width: 320px;
   flex: 0 0 30vw;
   box-sizing: border-box;
-}   
+}
+/* @media (max-width: 1100px) {
+  .left-bar {
+    padding: 3vw 2vw 1vw 2vw;
+    min-width: 170px;
+    max-width: 220px;
+    font-size: 0.96em;
+  }
+} */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    padding: 0;
+  }
+  .left-bar {
+    width: 100vw !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 auto 20px auto !important;
+    align-items: center;
+    text-align: center;
+    position: static !important;
+    padding: 18px 4vw 10px 4vw;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 750px) {
+  .panels {
+    flex-direction: column;
+    width: 98vw;
+    height: auto;
+    align-items: center;
+    gap: 12px;
+  }
+  a.panel {
+    min-width: 220px !important;
+    max-width: 540px !important;
+    width: 97vw !important;
+    margin: 0 auto !important;
+    clip-path: polygon(13% 0, 100% 0, 100% 100%, 0% 100%);
+    border-radius: 13px !important;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 18px #23252d35;
+  }
+  a.panel:not(:first-child) {
+    margin-left: 0 !important;
+  }
+  .panel-content {
+    font-size: 1.12em !important;
+    position: static !important;
+    left: 0; right: 0; bottom: 0;
+  }
+}
+@media (max-width: 500px) {
+  .left-bar img {
+    width: 88vw !important;
+    max-width: 220px;
+    margin: 0 auto !important;
+    display: block !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    position: static !important;
+  }
+  .side-desc {
+    font-size: 0.92em !important;
+    margin-top: 12px !important;
+    position: static !important;
+  }
+  .panel-content {
+    font-size: 0.98em !important;
+    padding: 5px 3vw !important;
+  }
+}
+@media (max-width: 360px) {
+  .panel-content {
+    font-size: 0.85em !important;
+    padding: 3px 1vw !important;
+  }
+}
+
 
 </style>
 </head>
@@ -366,16 +452,16 @@
     </div>
     </div>
     <div class="panels">
-    <a href="#about" class="panel bg1 panel-link">
+    <a href="contactus.html" class="panel bg5 panel-link">
         <div class="panel-content">
-        <div class="panel-num">01</div>
-        <div class="panel-label">ABOUT</div>
+        <div class="panel-num">05</div>
+        <div class="panel-label">CONTACT US</div>
         </div>
     </a>
-    <a href="events.html" class="panel bg2 panel-link">
+    <a href="gallery.html" class="panel bg4 panel-link">
         <div class="panel-content">
-        <div class="panel-num">02</div>
-        <div class="panel-label">COMPETITIONS</div>
+        <div class="panel-num">04</div>
+        <div class="panel-label">GALLERY</div>
         </div>
     </a>
     <a href="damn.html" class="panel bg3 panel-link">
@@ -389,16 +475,17 @@
   </div>
 </a>
 
-    <a href="gallery.html" class="panel bg4 panel-link">
+
+    <a href="events.html" class="panel bg2 panel-link">
         <div class="panel-content">
-        <div class="panel-num">04</div>
-        <div class="panel-label">GALLERY</div>
+        <div class="panel-num">02</div>
+        <div class="panel-label">COMPETITIONS</div>
         </div>
     </a>
-    <a href="contactus.html" class="panel bg5 panel-link">
+    <a href="aboutus.html" class="panel bg1 panel-link">
         <div class="panel-content">
-        <div class="panel-num">05</div>
-        <div class="panel-label">CONTACT US</div>
+        <div class="panel-num">01</div>
+        <div class="panel-label">ABOUT</div>
         </div>
     </a>
     </div>
@@ -407,6 +494,7 @@
     
     const cursor = document.querySelector('.cursor');
         const follower = document.querySelector('.cursor-follower');
+
 
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -417,6 +505,7 @@
                 follower.style.top = e.clientY - 10 + 'px';
             }, 100);
         });
+
 
 
     const panels = document.querySelectorAll('a.panel');
@@ -435,6 +524,7 @@
         panels.forEach(p => p.classList.remove('active'));
     });
 
+
     // Add fade out transition on link click for non-hash links
     const links = document.querySelectorAll('a.panel');
     links.forEach(link => {
@@ -445,7 +535,7 @@
                 document.body.style.opacity = '0';
                 setTimeout(() => {
                     window.location.href = href;
-                }, 500);
+                }, 800); // match transition duration
             }
         });
     });
@@ -459,6 +549,6 @@
   });
 </script>
 
+
 </body>
 </html>
-
