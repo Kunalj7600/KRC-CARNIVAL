@@ -108,16 +108,33 @@
     align-items: flex-end;
     justify-content: center;
     position: relative;
-    transition: flex 0.4s cubic-bezier(0.7,0,0.2,1), filter 0.25s;
     min-width: 0;
     min-height: 0;
     cursor: pointer;
     overflow: hidden;
     filter: grayscale(100%) brightness(0.95) contrast(1.05);
-    box-shadow: 8px 0px 17px #0002;
+    box-shadow: 8px 0px 17px rgba(0, 0, 0, 0.452);
     clip-path: polygon(18% 0,100% 0%,100% 100%,0% 100%);
     text-decoration: none;
     color: inherit;
+    position: relative;
+    transition: filter 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease, flex 0.4s cubic-bezier(0.7,0,0.2,1);
+    filter: none;
+    }
+    a.panel::before {
+      content: "";
+      color: linear-gradient(120deg,rgba(55,58,66,0.33) 49%,rgba(243, 8, 8, 0.781) 100%);
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      background-size: cover;
+      background-position: center;
+      filter: blur(5px) brightness(0.);
+      transform: scale(1.05);
+      transition: filter 0.4s ease, opacity 0.4s ease;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 1;
     }
     a.panel:not(:first-child) { margin-left: -110px; }
     .panel-content {
@@ -157,21 +174,39 @@
         url('/assets/car.png') center center/cover no-repeat;
     }
     .panel.bg3 {
-    background:
-        linear-gradient(120deg,rgba(55,58,66,0.23) 59%,rgba(0,0,0,0.18) 100%),
-        url('/assets/lfrn.png') center center/cover no-repeat;
+      
+      transition: filter 0.3s ease;
+      position: relative;
+      z-index: 0;
+      background:
+          linear-gradient(120deg,rgba(55,58,66,0.23) 59%,rgba(0,0,0,0.18) 100%),
+          url('/assets/lfrn.png') center center/cover no-repeat;
+    }
+    .panel.bg3 .panel-video {
+      
+      filter: blur(6px) brightness(0.7);
+      transition: filter 0.3s ease;
+    }
+    
+    a.panel.bg3:hover .panel-video,
+    a.panel.bg3.active .panel-video {
+      filter: none;
+    }
+    .panel.bg3 .panel-content {
+      position: relative; 
+      z-index: 10; 
     }
     .panel-video {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  pointer-events: none;
-}
-.panel-content {
-  position: relative;
-  z-index: 2;
-}
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;  
+      z-index: 1;
+      pointer-events: none;
+    }
+    .panel-content {
+      position: relative;
+      z-index: 2;
+    }
 
     .panel.bg4 {
     background:
@@ -183,15 +218,76 @@
         linear-gradient(120deg,rgba(55,58,66,0.19) 57%,rgba(0,0,0,0.17) 100%),
         url('/assets/contactus.png') center center/cover no-repeat;
     }
-    /* Optional: use 1 background and position it cleverly for exact reference look; swap url/images as needed. */
+    a.panel::before {
+      filter: blur(5px) brightness(0.7) drop-shadow(0 0 5px #000a);
+      opacity: 1;
+    }
+    .panel.bg1::before {
+      background:
+        linear-gradient(180deg,rgba(55,58,66,0.33) 49%,rgba(243, 8, 8, 0.781) 100%),
+        url('/assets/krcpunk.png') center center/cover no-repeat;
+    }
+    .panel.bg2::before {
+      background:
+        linear-gradient(180deg,rgba(55,58,66,0.27) 52%,rgba(243, 8, 8, 0.781) 100%),
+        url('/assets/car.png') center center/cover no-repeat;
+    }
+    .panel.bg3::before {
+      background:
+        linear-gradient(120deg,rgba(55,58,66,0.23) 59%,rgba(243, 8, 8, 0.781) 100%),
+        url('/assets/lfrn.png') center center/cover no-repeat;
+    }
+    .panel.bg3::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(55,58,66,0.23) 70%, rgba(243, 8, 8, 0.7) 100%);
+      pointer-events: none;
+      z-index: 5; /* above video (1), below panel content (10) */
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+    .panel.bg4::before {
+      background:
+        linear-gradient(180deg,rgba(55,58,66,0.16) 70%,rgba(243, 8, 8, 0.781) 100%),
+        url('/assets/gallery.png') center center/cover no-repeat;
+    }
+    .panel.bg5::before {
+      background:
+        linear-gradient(180deg,rgba(55,58,66,0.19) 57%,rgba(243, 8, 8, 0.781) 100%),
+        url('/assets/contactus.png') center center/cover no-repeat;
+    }
     a.panel.active,
     a.panel:hover {
-    flex: 2.7;
-    z-index: 100;
-    filter: grayscale(0) brightness(1.04) contrast(1.02);
+      flex: 2.7;
+      z-index: 100;
+      filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.863)) brightness(1) grayscale(0);
+      /* box-shadow: 0 10px 50px #080808; */
+      clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+
+    }
+    a.panel.panel.bg5:hover{
+      clip-path: polygon(18% 0,100% 0%,100% 100%,0% 100%);
+    }
+    a.panel:hover::before,
+    a.panel.active::before {
+      filter: none;
+      opacity: 1;
+      border: #0002;
     }
     a.panel:not(.active):not(:hover) .panel-content {
     opacity: 0.61;
+    }
+    a.panel .panel-content {
+      position: relative;
+      z-index: 1;
+      transition: color 0.25s ease;
+    }
+    
+    .wrapper:hover a.panel:not(:hover):not(.active) {
+      filter: brightness(0.7) grayscale(1);
+      transition: filter 0.3s ease;
+      clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
     }
     /* Responsive: hide left panel for mobile */
     /* @media (max-width:880px) {
@@ -252,8 +348,8 @@
     <div class="left-bar">
     <div class="site-logo"><br><span style="font-weight:200;letter-spacing:0.16em;">       </span></div>
     <div class="site-small"></div>
-    <img src="assets/2026.png" alt="KRC Logo" style="width: 110%; opacity: 0.85;position: relative; left: -5%;"/>
-    <div class="side-desc">
+    <img src="assets/2026.png" alt="KRC Logo" style="width: 110%; opacity: 0.85;position: relative; left: -5%;bottom: 20%;"/>
+    <div class="side-desc" style="margin-top: 0px; font-size: 0.95em;position: relative; bottom: 15%;">
         When the Robots compete, the Ideas ignite!<br><br>
         Join us at KRC Carnival 2k25 for some thrilling competitions. Unleash your creativity and be part of the excitement!
     </div>
@@ -271,7 +367,7 @@
         <div class="panel-label">COMPETITIONS</div>
         </div>
     </a>
-    <a href="#hackathon" class="panel bg3 panel-link">
+    <a href="damn.html" class="panel bg3 panel-link">
   <video autoplay muted loop playsinline class="panel-video">
     <source src="assets/hackathon.mp4" type="video/mp4" />
     Your browser does not support the video tag.
