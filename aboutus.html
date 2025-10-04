@@ -5,188 +5,194 @@
   <title>ABOUT.US</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      background: #d6d6d6;
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
       font-family: 'Montserrat', Arial, sans-serif;
+      background: #d6d6d6;
       overflow: hidden;
     }
+    body {
+      min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+    }
     .container {
-      max-width: 1300px;
-      background: #ffffff;
+      max-width: 1310px;
+      background: #fff;
+      height: 90vh;
+      max-height: 90vh;
       margin: 15px auto;
       border: 4px solid #222;
       box-shadow: 0 8px 32px #4443;
-      padding: 0;
+      min-height: 95vh;
       position: relative;
-      height: 95vh;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
+      padding: 0;
+      overflow: hidden;
     }
+
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 18px 35px 8px 35px;
       font-size: 14px;
-      z-index: 10 ;
+      z-index: 10;
+      flex-wrap: wrap;
     }
     .navbar .brand {
       font-weight: bold;
       letter-spacing: 2px;
       margin-right: 20px;
+      font-size: .9rem;
+      color: #111;
     }
     .navbar ul {
       list-style: none;
       display: flex;
+      flex-direction: row;
       gap: 24px;
       margin: 0;
       padding: 0;
+      flex-wrap: wrap;
     }
     .navbar ul li a {
       text-transform: uppercase;
       color: #de2b2f;
       text-decoration:none;
-      border-bottom: none;
-      cursor: pointer;
       font-weight: bold;
       opacity: 1;
       z-index: 2;
+      font-size: 1em;
+      border-bottom: none;
+      transition: border-bottom 0.2s, padding-bottom 0.2s;
     }
-    .navbar ul li a:hover {
+    .navbar ul li a:hover, .navbar ul li a.active {
       border-bottom: 2px solid #de2b2f;
       padding-bottom: 2px;
-  
     }
     .navbar .utils {
       display: flex;
       align-items: center;
       gap: 18px;
       font-family: monospace;
+      font-size: 1em;
     }
     .navbar .menu-icon {
       width: 20px;
       height: 20px;
-      display: inline-block;
       background: #222;
       mask: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect y="5" width="24" height="2"></rect><rect y="11" width="24" height="2"></rect><rect y="17" width="24" height="2"></rect></svg>') center/contain no-repeat;
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect y="5" width="24" height="2"></rect><rect y="11" width="24" height="2"></rect><rect y="17" width="24" height="2"></rect></svg>') center/contain no-repeat;
     }
-    /* .navbar .icon-settings {
-      width: 26px;
-      height: 18px;
-      background: url('https://img.icons8.com/material-rounded/24/000000/settings.png') center/contain no-repeat;
-      opacity: 0.6;
-      display: inline-block;
-    } */
 
     .main-card {
-      padding: 0 35px 35px 35px;
       position: relative;
+      flex: 1 1 auto;
+      padding: 0 35px 35px 35px;
       text-align: left;
       background: #fff;
       min-height: 700px;
-      overflow: hidden;
-      /* background-image: url(assets/aboutbg1.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        /* background-position: bottom right; */
-        background-position: right 0px top 40%;
-        
-        /* bottom: 25%; */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
-   
+
     .background-text {
-      font-size: 70px;
+      font-size: 5vw;
       font-weight: 900;
       color: #111;
       opacity: 1;
-      letter-spacing: -5px;
+      letter-spacing: -0.07em;
       text-transform: uppercase;
-      transform: translateX(-1.5%);
       position: relative;
       z-index: 1;
       white-space: nowrap;
-      margin-top: 30px;
+      margin-top: 2vw;
       margin-bottom: 0;
       line-height: 1;
       display: block;
-      /* top: 20%; */
+      transform: translateX(-1.5%);
     }
+
     .red-kanji {
       position: absolute;
-      left: 180px;
-      top: 120px;
-      font-size: 80px;
+      left: 8vw;
+      top: 6vw;
+      font-size: 6vw;
       font-family: 'Noto Sans JP', Arial, sans-serif;
       color: #de2b2f;
       font-weight: bold;
       z-index: 2;
-      transform: translateX(-23%) translateY(-30%);
-      pointer-events: none;
       opacity: 1;
-      letter-spacing: 0;
       user-select: none;
-      white-space: nowrap;
       filter: drop-shadow(0 3px 3px #de2b2f);
+      white-space: nowrap;
     }
-    /* Gas mask image styling */
+
     .center-mask {
       display: block;
-      /* margin: -100px auto 0 auto; */
-      width: 100px;
+      width: 6vw; min-width:60px; max-width: 120px;
       z-index: 10;
       position: relative;
-      /* left: 27%;
-      top: -25%; */
-      /* filter: drop-shadow(0 15px 2px rgb(34, 34, 34)); */
-      transform: translateX(-18%) translateY(2%);
+      margin-top: 2vw;
+      margin-bottom: 2vw;
+      transform: translateX(-20%) translateY(-20%);
+      object-fit: contain;
     }
+
     .subtitle {
-      margin-top: 30px;
-      font-size: 28px;
+      margin-top: 1vw;
+      font-size: 1.8vw;
       color: #222;
       letter-spacing: 2px;
       font-family: 'Montserrat', Arial, sans-serif;
       font-weight: bold;
       z-index: 2;
       position: relative;
-      top: 12%;
+      top: -.5vw;
       transform: translateX(-1.5%);
     }
     .warning {
-      font-size: 13px;
-      margin: 2px 0 8px 0;
+      font-size: .9em;
+      margin: 1px 0 8px 0;
       color: #555;
       font-family: 'Montserrat', Arial, sans-serif;
       z-index: 2;
       position: relative;
       text-transform: uppercase;
-      top: 13%;
+      top: .8vw;
       transform: translateX(-1.5%);
+      max-width: 100%;
+      word-break: break-word;
     }
     .serial {
       font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 22px;
+      font-size: 1.4em;
       margin-bottom: 35px;
       margin-top: 8px;
       letter-spacing: 2px;
       color: #24282b;
       position: relative;
-      top: 28%;
+      top: 13vw;
       transform: translateX(-1.75%);
-    
     }
     .barcode-row {
       display: flex;
+      flex-direction: row;
       align-items: flex-end;
       justify-content: space-between;
       margin-top: 30px;
       margin-bottom: 10%;
       position: relative;
-      top: 20.5%;
+      top: 6.75vw;
       transform: translateX(-1.75%);
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 16px;
     }
     .barcode-row img, .barcode-row svg {
       height: 56px;
@@ -194,31 +200,80 @@
     }
     .wave-graph {
       height: 36px;
+      min-width: unset;
       margin-bottom: 12px;
-      transform: translateX(20%);
+      transform: translateX(15%);
     }
+    /* Background image */
+    .bg-img {
+      position: absolute;
+      top: 0%; left: 36%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 1;
+      pointer-events: none;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 900px) {
-      .container { max-width: 100%; }
-      .main-card { padding: 0 12px 22px 12px; }
-      .background-text, .red-kanji { font-size: 58px; }
-      .center-mask { width: 180px; }
+      .navbar .menu-icon{
+        opacity: 0;
+        position: relative;
+        top: -10%;
+      }
+      .navbar ul li a {
+        position: relative;
+        size: 90%;
+        gap: 12px;
+        top: -10%;
+      }
+      .navbar .brand, .navbar .utils span {
+        opacity: 0;
+      }
+      .container { max-width: 95%; max-height: 100vh; border-width: 3px; }
+      .main-card { padding: 0 12px 22px 12px; min-height: 60vw;}
+      .background-text{ font-size: 5vw !important;transform: translateY(-50%) translateX(-2%); }
+      .red-kanji { font-size: 9vw !important; transform: translateX(40%) translateY(-55%); }
+      .center-mask { width: 5vw; max-width:120px;transform: translateX(-13%) translateY(-50%); }
+      .barcode-row { font-size: 1em; transform: translateY(61%) translateX(-3%); }
+      .serial { font-size: 1em; transform: translateX(-2%); top: 47vw; } 
+      .subtitle { transform: translateY(27%) translateX(-2%); }
+      
+      .subtitle {font-size: 1.2em;}
+      .warning { font-size: .8em; }
+      .bg-img { left: 0; width: 100%; height: 100%; opacity:0.2;}
+    }
+    @media (max-width: 650px) {
+      .navbar { padding: 10px 12px;}
+      .navbar ul { gap: 8px;}
+      .background-text, .red-kanji { font-size: 13vw !important; }
+      .center-mask { width: 38vw; min-width:45px; max-width:100px; }
+      .barcode-row { flex-direction: column; align-items: flex-start; gap:10px;}
+      .main-card { padding: 0 4vw 8vw 4vw; }
+      .red-kanji { left: 8vw; top: 18vw;}
+    }
+    @media (max-width: 480px) {
+      .container { border-width: 2px;}
+      .background-text { font-size: 18vw !important;}
+      .red-kanji { font-size: 17vw !important; left: 6vw; top:21vw;}
     }
   </style>
-  <!-- Google Fonts (optional, for Japanese): -->
+  <!-- Google Fonts for Japanese/english mix -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <img src="assets/aboutbg1.png" alt="Background Pattern" style="position: absolute; top: 0; left: 36%; width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: 1; ">
+    <img src="assets/aboutbg1.png" alt="Background Pattern" class="bg-img">
     <nav class="navbar">
       <span class="brand">KRC</span>
       <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a href="events.html">EVENTS</a></li>
-        <li><a href="gallery.html">GALLERY</a></li>
-        <li><a href="contactus.html">CONTACTS</a></li>
         <li><a href="projects.html">PROJECTS</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="contactus.html">CONTACT</a></li>
       </ul>
       <div class="utils">
         <span>X139</span>
@@ -229,15 +284,24 @@
     <div class="main-card">
       <div class="background-text">ABOUT.US</div>
       <div class="red-kanji">納税機</div>
-   
       <img src="assets/2025.png" class="center-mask" alt="Gas Mask Placeholder" />
       <div class="subtitle">KARUYANTRA</div>
       <p class="warning">YOU CAN GET A SKIN BURN WHEN HANDLING LEAD-ACID BATTERIES ALSO WHEN DEALING WITH KIRIS TANWAR.</p>
-      <div class="serial">S/N 48-1508F</div>
+      <div class="serial">K/S 19-0605J</div>
       <div class="barcode-row">
-        <!-- Replace below SVG with your barcode or glitch pattern asset -->
-        <svg width="320" height="40" viewBox="0 0 320 40"><rect width="100%" height="100%" fill="#000"/><rect x="14" y="7" width="6" height="28" fill="#fff"/><rect x="26" y="12" width="8" height="14" fill="#fff"/><rect x="42" y="7" width="7" height="28" fill="#fff"/><rect x="65" y="11" width="5" height="22" fill="#fff"/><rect x="85" y="9" width="10" height="25" fill="#fff"/><!-- Add more for glitch effect --></svg>
-        <svg class="wave-graph" width="110" height="36" viewBox="0 0 110 36"><polyline fill="none" stroke="#e13c33" stroke-width="2" points="0,30 10,15 20,27 30,6 40,26 50,17 60,35 70,17 80,36 90,22 100,10 110,30"/></svg>
+        <!-- Barcode SVG + glitch line, responsive -->
+        <svg width="320" height="40" viewBox="0 0 320 40">
+          <rect width="100%" height="100%" fill="#000"/>
+          <rect x="14" y="7" width="6" height="28" fill="#fff"/>
+          <rect x="26" y="12" width="8" height="14" fill="#fff"/>
+          <rect x="42" y="7" width="7" height="28" fill="#fff"/>
+          <rect x="65" y="11" width="5" height="22" fill="#fff"/>
+          <rect x="85" y="9" width="10" height="25" fill="#fff"/>
+        </svg>
+        <svg class="wave-graph" width="110" height="36" viewBox="0 0 110 36">
+          <polyline fill="none" stroke="#e13c33" stroke-width="2"
+            points="0,30 10,15 20,27 30,6 40,26 50,17 60,35 70,17 80,36 90,22 100,10 110,30"/>
+        </svg>
       </div>
     </div>
   </div>
