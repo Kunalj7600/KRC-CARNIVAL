@@ -5,7 +5,6 @@
 <head>
     <meta charset="UTF-8" />
     <title>Competitions and Events | KRC Carnival</title>
-    <link rel="icon" type="image/png" href="assets/fevicon.png" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
     <style>
@@ -93,21 +92,26 @@
             color: #747883;
             font-size: .97em;
             position: top right;
+            transform: translateX(-450%);
         }
         
         .stats {
+            position: absolute;
+            top: 24px;
+            right: 24px;
             background: #f3f3f600;
             color: #23252D;
             border-radius: 14px;
-            /* box-shadow: 0 1px 15px #242e5164 inset; */
-            /* backdrop-filter: blur(8px); */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px 0;
             font-family: 'Orbitron', monospace;
-            margin-top: 10px;
+            width: fit-content;
+            transform: translateX(-17%);
+            margin-top: 0;
+            box-shadow: none;
         }
         
         .stats .label {
@@ -125,15 +129,15 @@
         }
         
         .stats .circle {
-            width: 76px;
-            height: 76px;
-            border-radius: 50%;
+            width: 82%;
+            height: 40px;
+            border-radius: 30px;
             background: radial-gradient(circle, #253254 62%, #0a0a0a 100%);
             margin: 0 0 8px 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1em;
+            font-size: 1.em;
             color: #fff;
             position: relative;
         }
@@ -245,14 +249,17 @@
         .panel-bg {
             flex: 1 1 auto;
             width: 100%;
-            height: 200%;
-            min-height: 56%;
+            height: 100%;
+            /* fill entire panel height */
             background: linear-gradient(109deg, #7e8590 18%, #31353B 100%);
             background-size: cover;
             background-position: center;
             position: relative;
             z-index: 1;
-            border-bottom: 0.7em solid #232c3b00;
+            border-bottom: 0;
+            /* remove fixed bottom border */
+            margin-top: 0;
+            /* remove any margin */
         }
         
         .panel-label {
@@ -426,6 +433,10 @@
                 padding: 8px 12px;
             }
         }
+        
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 
@@ -450,14 +461,14 @@
             <div style="height: 1px;margin-top: 20px; background: black;"></div>
 
             <div class="stats">
-                <div class="label">Current Entries</div>
-                <div class="circle">00</div>
-                <div class="meter">Time Left</div>
+                <div class="label"></div>
+                <div class="circle"><a href="#panel-container" , style="text-decoration: none;color: white; margin-left: 0%; text-align: center;">REGISTER HERE </span></a></div>
+                <div class="meter">TIME LEFT</div>
                 <div class="countdown" id="countdown-timer">00:00:00</div>
             </div>
         </div>
 
-        <div class="panel-container">
+        <div class="panel-container" id="panel-container">
             <div class="panel">
                 <div class="panel-bg" style="background-image: url('assets/car.png');"></div>
                 <div class="panel-label">
@@ -469,7 +480,7 @@
                 <div class="register-btn" tabindex="0">
                     <a href="register.html" class="pill-segment register" target="_blank" rel="noopener noreferrer">Register</a>
 
-                    <a href="rulebook.html" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rules</a>
+                    <a href="assets/roborace_rulebook.pdf" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rules</a>
                 </div>
             </div>
             <div class="panel">
@@ -539,7 +550,7 @@
 
         function updateCountdown() {
             const now = new Date();
-            const eventDate = new Date('October 12, 2025 00:00:00');
+            const eventDate = new Date('October 15, 2025 00:00:00');
             const diff = eventDate - now;
 
 
@@ -582,4 +593,3 @@
 
 
 </html>
-
