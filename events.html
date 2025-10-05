@@ -420,17 +420,77 @@
         }
         
         @media (max-width: 720px) {
+            .body {
+                overflow: auto;
+            }
+            .wrapper {
+                width: 95vw;
+                padding: 12px 10px;
+                margin-top: 1vh;
+            }
+            .headline {
+                padding: 20px 24px;
+            }
+            .headline h1 {
+                font-size: 1.6em;
+            }
+            .headline .subrow {
+                font-size: 0.9em;
+            }
+            .stats {
+                width: 20vw;
+                padding: 10px 15px;
+                font-size: 0.9em;
+                top: 10px;
+                right: 10px;
+                transform: none !important;
+            }
+            .stats .label {
+                font-size: .5em;
+            }
+            .stats .circle {
+                width: 75%;
+                height: 28px;
+                font-size: 0.6em;
+                transform: translateY(40%);
+            }
+            .stats .meter {
+                font-size: .81em;
+                transform: translateX(5%) translateY(35%);
+            }
+            .countdown {
+                font-size: .8em;
+                transform: translateX(5%) translateY(-10%);
+            }
             .panel-container {
                 justify-content: center;
             }
             .panel {
-                width: 90vw;
+                width: 65vw;
                 min-width: 220px;
-                height: 430px;
+                height: 370px;
             }
             .panel-label {
                 min-height: 62px;
                 padding: 8px 12px;
+            }
+            .panel-title {
+                font-size: 1.2em;
+                margin-bottom: 8px;
+            }
+            .panel-description {
+                font-size: 0.8em;
+                width: 100%;
+                margin-top: 0;
+            }
+            .register-btn {
+                width: auto;
+                font-size: 0.9em;
+                transform: translateY(-15px) translateX(0);
+            }
+            .pill-segment {
+                font-size: 0.65em;
+                padding: 0 10px;
             }
         }
         
