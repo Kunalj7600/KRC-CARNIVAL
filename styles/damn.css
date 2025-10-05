@@ -109,8 +109,6 @@ body::before {
     box-shadow: 0 0 25px var(--accent);
 }
 
-
-
 .hero {
   min-height: 100dvh; 
   height: 100dvh; 
@@ -140,7 +138,7 @@ body::before {
     position: relative;
     z-index: 10;
     filter: brightness(1) drop-shadow(0 0 2px white);
-    margin-left: 45px;
+    margin-left: 75px;
     opacity: 1.0; 
     margin-bottom: 0; 
 }
