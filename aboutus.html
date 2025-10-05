@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>ABOUT.US</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="assets/fevicon.png" />
+  <link rel="icon" type="image/png" href="assets/2025.png" />
   <style>
     html, body {
       height: 100%;
@@ -155,7 +155,7 @@
       z-index: 2;
       position: relative;
       top: -.5vw;
-      transform: translateX(-1.5%);
+      transform: translateX(-1.05%);
     }
     .warning {
       font-size: .9em;
@@ -166,9 +166,10 @@
       position: relative;
       text-transform: uppercase;
       top: .8vw;
-      transform: translateX(-1.5%);
+      transform: translateX(-2%);
       max-width: 100%;
       word-break: break-word;
+      width: 40vw;
     }
     .serial {
       font-family: 'JetBrains Mono', 'Courier New', monospace;
@@ -243,7 +244,7 @@
       .subtitle { transform: translateY(27%) translateX(-2%); }
       
       .subtitle {font-size: 1.2em;}
-      .warning { font-size: .8em; }
+      .warning { font-size: .8em;width: 65vw; }
       .bg-img { left: 0; width: 100%; height: 100%; opacity:0.2;}
     }
     @media (max-width: 650px) {
@@ -259,6 +260,32 @@
       .container { border-width: 2px;}
       .background-text { font-size: 18vw !important;}
       .red-kanji { font-size: 17vw !important; left: 6vw; top:21vw;}
+      .subtitle {
+        font-size: 1.5em;
+        margin-top: 8px;
+        position: static;
+        transform: translateX(-3%) translateY(160%);
+      }
+      .warning{
+        font-size: 1em;
+        width: 80vw;
+        transform: translateX(-3%) translateY(20%);
+      }
+      .barcode-row{
+        transform: translateX(-3%) translateY(105%);
+      }
+      .serial{
+        transform: translateX(-3%) translateY(235%);
+      }
+    }
+    @media (max-width: 380px) {
+      .background-text { font-size: 15vw !important;}
+      .red-kanji { font-size: 15vw !important; left: 5vw; top:20vw;}
+      .center-mask { width: 35vw; min-width:35px; max-width:80px; }
+      .subtitle { font-size: 1.2em;transform: translateY(30%) translateX(-3%); }
+      .warning { font-size: 0.8em;transform: translateY(3%) translateX(-3%); }
+      .serial { font-size: 0.9em;transform: translateY(20%) translateX(-3%); }
+      
     }
   </style>
   <!-- Google Fonts for Japanese/english mix -->
@@ -287,7 +314,7 @@
       <div class="red-kanji">納税機</div>
       <img src="assets/2025.png" class="center-mask" alt="Gas Mask Placeholder" />
       <div class="subtitle">KARUYANTRA</div>
-      <p class="warning">YOU CAN GET A SKIN BURN WHEN HANDLING LEAD-ACID BATTERIES ALSO WHEN DEALING WITH KIRIS TANWAR.</p>
+      <p class="warning">Karuyantra Robotics Club (KRC) is where innovation sparks and ideas turn into machines! From jaw-dropping workshops to mind-bending projects, KRC has built everything from bots that race to systems that think. We push boundaries, break limits, and create tech that wows. This Elysian 2025, our KRC Carnival is back—bigger, bolder, and crazier—where circuits meet creativity and robots rule the arena!</p>
       <div class="serial">K/S 19-0605J</div>
       <div class="barcode-row">
         <!-- Barcode SVG + glitch line, responsive -->
@@ -308,5 +335,3 @@
   </div>
 </body>
 </html>
-
-
