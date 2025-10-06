@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Competitions and Events | KRC Carnival</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="../assets/2025.png" />
+    <link rel="stylesheet" href="../styles/events.css" />
+</head>
+
+
+<body>
+    <video autoplay muted loop id="bgvi">
+        <source src="../assets/bgvi1.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+    <div class="wrapper">
+        <div class="headline">
+            <h1>COMPETITIONS AND EVENTS</h1>
+            <div class="subrow">
+                <span>INTERFACE</span>
+                <span class="year-label">2025 KRC Carnival</span>
+            </div>
+            <div class="barcode"></div>
+            <div style="margin: 12px 0 0 0; font-size: 1.11em; letter-spacing: 0.7px;">
+                The most electrifying robotics battles and hardware events of the year!
+            </div>
+
+            <div style="height: 1px;margin-top: 20px; background: black;"></div>
+
+            <div class="stats">
+                <div class="label"></div>
+                <div class="circle"><a href="#panel-container" , style="text-decoration: none;color: white; margin-left: 0%; text-align: center;">REGISTER HERE </span></a></div>
+                <div class="meter">TIME LEFT</div>
+                <div class="countdown" id="countdown-timer">00:00:00</div>
+            </div>
+        </div>
+
+        <div class="panel-container" id="panel-container">
+            <div class="panel">
+                <div class="panel-bg" style="background-image: url('../assets/car.png');"></div>
+                <div class="panel-label">
+                    <div class="panel-label-content">
+                        <span class="panel-title">ROBORACE</span>
+                    </div>
+                    <div class="panel-description">The ultimate contest for autonomous robots – fastest, smartest bot wins the track!</div>
+                </div>
+                <div class="register-btn" tabindex="0">
+                    <a href="../register.html" class="pill-segment register" target="_blank" rel="noopener noreferrer">Register</a>
+
+                    <a href="../assets/roborace_rulebook.pdf" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rules</a>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-bg" style="background-image: url('../assets/lfrnew.png');"></div>
+                <div class="panel-label">
+                    <div class="panel-label-content">
+                        <span class="panel-title">LFR</span>
+                    </div>
+                    <div class="panel-description">Race your line-follower robot in a neon maze. Speed and logic are everything.</div>
+                </div>
+                <div class="register-btn" tabindex="0">
+                    <a href="../register.html" class="pill-segment register" target="_blank" rel="noopener noreferrer">Register</a>
+                    <a href="../rulebook.html" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rules</a>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-bg" style="background-image: url('../assets/MICROMOUSE.png');"></div>
+                <div class="panel-label">
+                    <div class="panel-label-content">
+                        <span class="panel-title">MICRO-MOUSE</span>
+                    </div>
+                    <div class="panel-description">Engineer your mouse bot to solve complex mazes at record speed. Pure cyberpunk innovation!</div>
+                </div>
+                <div class="register-btn" tabindex="0">
+                    <a href="register.html" class="pill-segment register" target="_blank" rel="noopener noreferrer">Register</a>
+                    <a href="rulebook.html" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rules</a>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-bg" style="background-image: url('../assets/showcas.png');"></div>
+                <div class="panel-label">
+                    <div class="panel-label-content">
+                        <span class="panel-title">HARDWARE SHOWCASING</span>
+                    </div>
+                    <div class="panel-description">Display your innovative hardware creations and gain insights and feedback from experts. Exclusive spotlight sessions and interactive demos.</div>
+                </div>
+                <div class="register-btn" tabindex="0">
+                    <a href="register.html" class="pill-segment register" target="_blank" rel="noopener noreferrer">Register</a>
+                    <a href="rulebook.html" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rules</a>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-bg" style="background-image: url('../assets/hackathonwebsute.png');"></div>
+                <div class="panel-label">
+                    <div class="panel-label-content">
+                        <span class="panel-title">HACKATHON</span>
+                    </div>
+                    <div class="panel-description">Concussion and impact projectiles.</div>
+                </div>
+                <div class="register-btn" tabindex="0">
+                    <a href="register.html" class="pill-segment register" target="_blank" rel="noopener noreferrer">Register</a>
+                    <a href="rulebook.html" class="pill-segment rulebook" target="_blank" rel="noopener noreferrer">Rules</a>
+                </div>
+            </div>
+        </div>
+        <div class="info clipped" id="event-info">
+            <h3>Event Info</h3>
+            AI Integration | Custom Bots | Prizes<br /> Date: 15-16 Oct 2025 | Venue: Dinovo Center, USAR<br /> Open to all robotics enthusiasts!<br />
+        </div>
+    </div>
+
+
+    <script>
+        // Countdown Timer
+        const countdownElement = document.getElementById('countdown-timer');
+
+
+        function updateCountdown() {
+            const now = new Date();
+            const eventDate = new Date('October 15, 2025 00:00:00');
+            const diff = eventDate - now;
+
+
+            if (diff <= 0) {
+                countdownElement.textContent = "0:0:0";
+                clearInterval(countdownInterval);
+                return;
+            }
+
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+
+            countdownElement.textContent = `${days}d ${hours}h ${minutes}m`;
+        }
+
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+
+        // Event Info blur toggle expand on hover behavior
+        const eventInfo = document.getElementById('event-info');
+
+
+        eventInfo.addEventListener('mouseenter', () => {
+            eventInfo.classList.remove('clipped');
+            eventInfo.classList.add('expanded');
+        });
+
+
+        eventInfo.addEventListener('mouseleave', () => {
+            eventInfo.classList.add('clipped');
+            eventInfo.classList.remove('expanded');
+        });
+    </script>
+</body>
+
+
+</html>
+
+
+
