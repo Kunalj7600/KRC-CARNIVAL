@@ -15,9 +15,13 @@
   </head>
   <body>
     <header class="site-header" role="banner">
+        <a href="/hackathon/">
+          <img src="../assets/logo.png" alt="nimesha logo" class="logo">
+        </a>
         <nav class="header-nav">
-            <a href="/">Home</a>
-            <a href="../about/">About</a>
+            <a href="/">HOME</a>
+            <a href="../about/">THEME</a>
+            <a href="../about/">Timeline</a>
             <a href="../contact-us/">Contact Us</a>
             <a href="#register" class="btn-register">REGISTER</a>
         </nav>
@@ -26,55 +30,58 @@
     <main class="hero" role="main">
       <section class="left-pane">
         <img
-          class="dummy-logo"
-          src="../assets/nimeshaheadline1.png"
+          class="left-logo"
+          src="../assets/event posters.png"
           alt="Hackathon Logo Placeholder"
         />
+        <div class="sponsors">
+          <p>partners:</p>
+          <div class="image-grid">
+            <a>
+              <img src="../assets/ipuiif.png">
+            </a>
+            <a>
+              <img src="../assets/ipu.png">
+            </a>
+            <a>
+              <img src="../assets/elysian.png">
+            </a>
+            <a>
+              <img src="../assets/ETHIndia.png">
+            </a>
+            <a>
+              <img src="../assets/Devfolio.png">
+            </a> 
+          </div>
+        </div>
       </section>
 
       <div class="center-image-container" aria-hidden="true">
         <img
           class="hero-image"
-          src="../assets/kok.png"
+          src="../assets/redbg.png"
+          alt="Futuristic astronaut in a green-lit environment"
+        />
+        <img
+          class="flame-image"
+          src="../assets/flames.png"
           alt="Futuristic astronaut in a green-lit environment"
         />
         <img
           class="bhangi-full-screen"
-          src="../assets/bhangiastro.png"
+          src="../assets/astr.png"
           alt="Bhangi Astronaut Full Screen"
         />
       </div>
 
-      <aside class="right-pane" aria-label="Game Highlights">
-        <div class="right-box">
-            <img class="right-visual" src="../assets/gui.png" alt="guidelines" />
-            <p class="right-feature-description">BLA BLA BLA</p>
-        </div>
-        <div class="right-box shifted-left"> 
-            <img class="right-visual" src="../assets/ps.png" alt="themes" />
-            <p class="right-feature-description">BLA BLA BLA</p>
-        </div>
-        <div class="right-box">
-            <img class="right-visual" src="../assets/des.png" alt="description" />
-            <p class="right-feature-description">BLA BLA BLA</p>
-        </div>
-      </aside>
-
       <div 
-        class="apply-button" 
+        class="apply-button dev-button" 
         data-hackathon-slug="Nimesha" 
         data-button-theme="dark-inverted"
         style="height: 44px; width: 312px"
       ></div>
     </main>
-      
-  <div class="content-frame"></div>
-  
-  <video autoplay muted loop playsinline class="bg-video">
-    <source src="../assets/bgvi.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
 
-  <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
+    <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
   </body>
 </html>
