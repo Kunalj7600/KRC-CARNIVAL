@@ -1,0 +1,535 @@
+body {
+  background: transparent;
+  margin: 0;
+  font-family: "Share Tech Mono", monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+#bgvi {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  background: #39383A;
+}
+
+.wrapper {
+  background: #dee0e82f;
+  border-radius: 22px;
+  padding: 24px 22px;
+  max-width: 1220px;
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  backdrop-filter: blur(12px);
+  margin-top: 2vh;
+}
+
+.headline {
+  background: #f3f3f6;
+  border-radius: 13px;
+  box-shadow: 0 2px 19px #19193913;
+  padding: 28px 40px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-image: url('/assets/nobglogo.png');
+  background-size: 50px;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+}
+
+.headline h1 {
+  font-family: 'Orbitron', monospace;
+  font-size: 2.35em;
+  margin: 0 0 18px 0;
+  color: #23252D;
+  letter-spacing: 2.8px;
+}
+
+.headline .subrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.11em;
+  margin-bottom: 6px;
+  color: #4a4853;
+}
+
+.barcode {
+  height: 28px;
+  width: 120px;
+  background: linear-gradient(90deg, #ddd 28%, #232 35%, #eee 72%);
+  border-radius: 3px;
+  margin: 10px 0 14px 0;
+}
+
+.headline .year-label {
+  letter-spacing: 2px;
+  color: #747883;
+  font-size: .97em;
+  position: top right;
+  transform: translateX(-450%);
+}
+
+.stats {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: #f3f3f600;
+  color: #23252D;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  font-family: 'Orbitron', monospace;
+  width: fit-content;
+  transform: translateX(-17%);
+  margin-top: 0;
+  box-shadow: none;
+}
+
+.stats .label {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 7px;
+  color: #23252D;
+  text-align: center;
+}
+
+.stats .meter {
+  font-size: 1.7em;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.stats .circle {
+  width: 82%;
+  height: 40px;
+  border-radius: 30px;
+  background: radial-gradient(circle, #253254 62%, #0a0a0a 100%);
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.em;
+  color: #fff;
+  position: relative;
+}
+
+.stats .circle::after {
+  content: '';
+  width: 52px;
+  height: 2px;
+  background: #eb1f2900;
+  position: absolute;
+  left: 12px;
+  bottom: 34px;
+  transform: rotate(-17deg);
+}
+
+.countdown {
+  margin-top: 6px;
+  color: #eb1f28;
+  font-size: 2em;
+  font-family: 'Orbitron', monospace;
+}
+
+.info.clipped {
+  max-height: 240px;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  border-radius: 13px;
+  background-color: rgba(35, 37, 45, 0.85);
+  color: #fcf9fa;
+  padding: 20px;
+  font-family: 'Orbitron', monospace;
+  box-shadow: 0 2px 19px #19193913;
+  cursor: pointer;
+}
+
+.info.expanded {
+  max-height: 240px;
+  cursor: default;
+  max-height: 240px;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  border-radius: 13px;
+  background-color: rgba(35, 37, 45, 0.85);
+  color: #fcf9fa;
+  padding: 20px;
+  font-family: 'Orbitron', monospace;
+  box-shadow: 0 2px 19px #19193913;
+  cursor: pointer;
+}
+
+.info h3 {
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-size: 1.4em;
+  letter-spacing: 1.5px;
+}
+
+/* Operator Cards Slanted Design */
+
+.panel-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 1.5vw;
+  width: 100vw;
+  max-width: 1220px;
+  padding: 5vh 2vw 5vh 2vw;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin-top: 12px;
+  scroll-behavior: smooth;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(55, 58, 66, 0) 57%, rgba(243, 8, 8, 0.781) 100%);
+  width: 220px;
+  min-width: 180px;
+  height: 90vh;
+  max-height: 580px;
+  box-sizing: border-box;
+  /* border: rgba(255, 255, 255, 0.904) 2px solid; */
+  clip-path: polygon(0 10%, 17% 0, 100% 0, 100% 23%, 95% 28%, 95% 94%, 82% 100%, 0 100%, 0 80%, 0 10%);
+  box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.18), 0px 1.5px 8px #222 inset;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  position: relative;
+  transition: filter 0.32s, transform 0.27s;
+  cursor: pointer;
+  z-index: 2;
+  overflow: hidden;
+  margin-bottom: 1vh;
+}
+
+.panel:hover,
+.panel:focus {
+  transform: scale(1.1) translateY(-14px);
+  z-index: 10;
+  box-shadow: 0 22px 52px 0 rgba(0, 0, 0, 0.25), 0px 3px 16px #222 inset;
+  transition: transform 0.27s, box-shadow 0.32s;
+}
+
+.panel-container:hover .panel:not(:hover) {
+  filter: blur(2px) brightness(0.7);
+  transition: filter 0.32s;
+}
+
+.panel-bg {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  /* fill entire panel height */
+  background: linear-gradient(109deg, #7e8590 18%, #31353B 100%);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+  border-bottom: 0;
+  /* remove fixed bottom border */
+  margin-top: 0;
+  /* remove any margin */
+}
+
+.panel-label {
+  width: 100%;
+  height: 80%;
+  min-height: 116px;
+  background: linear-gradient(180deg, rgba(55, 58, 66, 0) 49%, rgba(243, 8, 8, 0.781) 100%);
+  position: absolute;
+  left: 0;
+  bottom: 0%;
+  clip-path: polygon(0 32%, 100% 0, 100% 100%, 0 100%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px 18px;
+}
+
+.panel-label-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  margin-bottom: 0;
+  margin-left: 0;
+  transition: transform 0.3s ease;
+}
+
+.operator-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: #232c3b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 6px #111 inset;
+  font-size: 2em;
+  color: #eb5b34;
+}
+
+.panel-title {
+  font-size: 1.37em;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1.7px;
+  margin-right: 0.6em;
+  text-shadow: 0 3px 12px #0008;
+  transform: translateY(350px);
+  transition: transform 0.3s ease;
+}
+
+.panel-description {
+  text-align: left;
+  font-size: 0.8em;
+  opacity: 0;
+  margin: 8px 0 0 0px;
+  color: #e2e2e2;
+  position: relative;
+  z-index: 3;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  user-select: none;
+  width: 60%;
+}
+
+.panel:hover .panel-title {
+  transform: translateY(250px);
+}
+
+.panel:hover .panel-description {
+  opacity: 1;
+  pointer-events: auto;
+  user-select: auto;
+  margin-top: 250px;
+}
+
+.register-btn {
+  display: flex;
+  background: #eeebeade;
+  color: #000000;
+  font-family: 'Orbitron', monospace;
+  font-weight: bold;
+  margin: 2px auto 0;
+  width: 82%;
+  height: 2%;
+  border: none;
+  border-radius: 30px;
+  padding: 0.7em 0;
+  font-size: 1em;
+  box-shadow: 0 3px 10px rgba(120, 60, 40, 0.13);
+  cursor: pointer;
+  transition: background 0.17s;
+  position: relative;
+  z-index: 10;
+  transform: translateY(-25px) translateX(-7px);
+}
+
+.pill-segment {
+  flex: 1 1 0px;
+  text-align: center;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  user-select: none;
+  color: #0a0a0a;
+  text-decoration: none;
+  font-size: 0.7em;
+  border-left: 1px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.pill-segment:first-child {
+  border-left: none;
+}
+
+.pill-segment:hover {
+  color: red;
+  transition: color .3s;
+}
+
+.pill-segment:last-child {
+  border-left: 1px solid rgba(24, 23, 23, 0.719);
+}
+
+/* .panel:hover .register-btn,
+        .panel:focus .register-btn {
+            display: block;
+            transition: transform 0.3s;
+            z-index: 10;
+        } */
+
+.panel-container::-webkit-scrollbar {
+  height: 10px;
+}
+
+.panel-container::-webkit-scrollbar-track {
+  background: #1a1a1e;
+}
+
+.panel-container::-webkit-scrollbar-thumb {
+  background: #eb5b34;
+  border-radius: 10px;
+}
+
+@media (max-width: 1100px) {
+  .panel {
+    width: 33vw;
+    min-width: 200px;
+  }
+
+  .panel-label {
+    min-height: 100px;
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 720px) {
+  .body {
+    overflow: auto;
+  }
+
+  #bgvi {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 110vw;
+    height: 110vh;
+    object-fit: cover;
+    z-index: -1;
+    background: #39383A;
+  }
+
+  .wrapper {
+    width: 97vw;
+    padding: 12px 10px;
+    margin-top: 1vh;
+  }
+
+  .headline {
+    padding: 20px 24px;
+  }
+
+  .headline h1 {
+    font-size: 1.6em;
+  }
+
+  .headline .subrow {
+    font-size: 0.9em;
+  }
+
+  .stats {
+    width: 20vw;
+    padding: 10px 15px;
+    font-size: 0.9em;
+    top: 10px;
+    right: 10px;
+    transform: none !important;
+  }
+
+  .stats .label {
+    font-size: .5em;
+  }
+
+  .stats .circle {
+    width: 75%;
+    height: 28px;
+    font-size: 0.6em;
+    transform: translateY(40%);
+  }
+
+  .stats .meter {
+    font-size: .81em;
+    transform: translateX(5%) translateY(35%);
+  }
+
+  .countdown {
+    font-size: .8em;
+    transform: translateX(5%) translateY(-10%);
+  }
+
+  .panel-container {
+    justify-content: center;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    touch-action: pan-x;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 1.5vw;
+    width: 100vw;
+    max-width: 1220px;
+    padding: 5vh 2vw 5vh 2vw;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+
+  .panel {
+    width: 65vw;
+    min-width: 220px;
+    height: 370px;
+  }
+
+  .panel-label {
+    min-height: 62px;
+    padding: 8px 12px;
+    height: auto;
+  }
+
+  .panel-title {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+
+  .panel-description {
+    font-size: 0.7em;
+    width: 90%;
+    margin-top: 0;
+    margin-bottom: 20%;
+  }
+
+  .register-btn {
+    width: auto;
+    font-size: 0.9em;
+    transform: translateY(-15px) translateX(0);
+  }
+
+  .pill-segment {
+    font-size: 0.65em;
+    padding: 0 10px;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
