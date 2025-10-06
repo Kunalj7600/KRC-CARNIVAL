@@ -17,17 +17,35 @@
   </head>
   <body>
     <header class="site-header" role="banner">
+      <div class="left-header">
+        <span class="menu-icon" onclick="toggleMenu()">☰</span>
         <a href="/hackathon/">
           <img src="../assets/logo.png" alt="nimesha logo" class="logo">
         </a>
-        <nav class="header-nav">
-            <a href="/">HOME</a>
-            <a href="../about/">THEME</a>
-            <a href="../about/">Timeline</a>
-            <a href="../contact-us/">Contact Us</a>
-            <a href="#register" class="btn-register">REGISTER</a>
-        </nav>
+      </div>
+      
+      <nav class="header-nav">
+        <ul class="menuList">
+          <a href="/">HOME</a>
+          <a href="../about/">THEME</a>
+          <a href="../about/">Timeline</a>
+          <a href="../contact-us/">Contact Us</a>
+        </ul>
+        <button class="reg-button"><a href="#register" class="btn-register">REGISTER</a></button>
+      </nav>
     </header>
+    <nav class="toggle-nav">
+      <ul class="toggleMenu">
+        <li><a href="/"><img class="icon" src="../assets/home.png">HOME</a></li>
+        <li><a href="../about/"><img class="icon" src="../assets/web-design.png">THEME</a></li>
+        <li><a href="../about/"><img class="icon" src="../assets/timeline.png">Timeline</a></li>
+        <li>
+          <a href="../contact-us/"><img class="icon" src="../assets/contact-mail.png">Contact Us</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
     <main class="hero" role="main">
       <section class="left-pane">
@@ -87,5 +105,12 @@
     </main>
 
     <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
+    <script>
+      function toggleMenu() {
+        const menu = document.querySelector(".toggleMenu");
+        menu.classList.toggle("active");
+        document.querySelector('#overlay').classList.toggle('active');
+      }
+    </script>
   </body>
 </html>
