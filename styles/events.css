@@ -46,8 +46,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-image: url('/assets/2026.png');
-  background-size: 50px;
+  background-image: url('/assets/2025.png');
+  background-size: 48px;
   background-position: bottom right;
   background-repeat: no-repeat;
 }
