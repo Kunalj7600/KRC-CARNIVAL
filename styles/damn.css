@@ -77,6 +77,7 @@ body::before {
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
 .header-nav a, .header-nav button {
@@ -134,7 +135,7 @@ body::before {
 }
 
 .logo {
-  height: 80px;
+  height: 120px;
   width: 120px;
 }
 
@@ -143,78 +144,79 @@ body::before {
   height: 100dvh;
   margin: 0;
   padding: 0;
-  display: block;
-  position: relative;
+  display: flex;
 }
 
 .left-pane {
   position: absolute;
   inset: 0;
   z-index: 10;
-  max-width: var(--maxw);
   margin-left: 20px;
   padding: var(--gutter);
   display: grid;
-  place-items: center start;
+  place-items: start;
   align-content: center;
   height: 100%;
 }
 
-.left-logo {
-  max-width: clamp(150px, 50vw, 1100px);
-  height: auto;
-  transform: translateX(-25%);
+.karu{
   position: relative;
-  z-index: 10;
-  margin-left: 100px;
-  opacity: 1.0;
-  margin-bottom: 0;
-}
-
-.sponsors{
-  max-width: 600px;
-  position: relative;
-  z-index: 10;
-  margin-left:10px;
-  opacity: 1.0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+  padding-left: 120px;
+}
+
+.carnival{
+  margin-bottom: 0;
+}
+
+.present{
+  margin: 0px;
+  color: var(--primary);
+}
+
+.left-logo {
+  max-width: clamp(150px, 50vw, 1100px);
+  transform: translateX(-25%);
+  position: relative;
+  z-index: 10;
+  margin-left: 130px;
+  opacity: 1.0;
+  margin-bottom: 20px;
+}
+
+.sponsors{
+  max-width: 600px;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  z-index: 10;
+  margin-left:10px;
+  opacity: 1.0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .sponsors p{
-  font-size: 22px;
+  font-size: 18px;
   font-family: 'Reguler';
   text-transform: uppercase;
-  text-decoration: none;
   color: #F3F4F6;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-right: 10px;
+  letter-spacing: 1px;
 }
 
-.image-grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 25px;
-  row-gap: 20px;
-}
-
-.image-grid a img{
-  max-width: 100%;
-  height: 65px;
-}
-
-.image-grid2{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 25px;
-  row-gap: 20px;
-}
-
-.image-grid2 a img{
-  max-width: 100%;
-  height: 65px;
+.sponsors img{
+  height: 40px;
+  width: 100px;
 }
 
 .center-image-container {
@@ -258,13 +260,76 @@ body::before {
   object-fit: cover;
   z-index: 9;
   object-position: center;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.right-pane{
+  z-index: 10;
+  position: absolute;
+  right: 25px;
+  top: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.prize-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  margin-bottom: 0;
+}
+
+.prize-amount {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 3rem; /* adjust based on design */
+  animation: glow-white 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow-white {
+  from { text-shadow: 0 0 2.5px #FFFFFF, 0 0 5px #FFFFFF; }
+  to { text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; }
+}
+
+.details{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  gap: 3px;
+}
+
+.details-logo{
+  height:100%;
+  width: 40px;
+}
+
+.info{
+  margin: 0px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+  color: var(--primary)
 }
 
 .dev-button{
   position: absolute;
   bottom: 10;
   right: 10;
-  z-index: 15;
+  z-index: 1500;
 }
 
 .toggleMenu{
@@ -354,10 +419,10 @@ body::before {
   }
 
   .left-logo{
-    margin-left: 45px;
-    width: 400px;
-    height: 120px;
-    margin-top: 120px;
+    margin-left: 20px;
+    width: 300px;
+    height: 80px;
+    margin-top: 0px;
   }
 
   .sponsors{
@@ -367,18 +432,39 @@ body::before {
   }
 
   .sponsors p{
-    font-size: 15px;
+    font-size: 12px;
   }
 
-  .image-grid a img{
-    height: 30px;
+  .sponsors img{
+    height: 20px;
+    width: 60px;
   }
 
-  .image-grid2 a img{
-    height: 30px;
+  .karu{
+    letter-spacing: 0px;
+    font-size: 0.8rem;
+    padding-left: 0px;
   }
 
-  .left-pane{
-    padding-left: 12px;
+  .prize-heading{
+    font-size: 0.9rem;
+  }
+
+  .prize-amount{
+    font-size: 2rem;
+  }
+
+  .details{
+    margin-top: 5px;
+    gap: 0px;
+  }
+
+  .details-logo{
+    width: 30px;
+  }
+
+  .info{
+    letter-spacing: 0px;
+    font-size: 0.8rem;
   }
 }
