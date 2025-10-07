@@ -177,6 +177,21 @@ body {
     width: 40vw;
 }
 
+.warning1 {
+    font-size: .9em;
+    margin: 1px 0 8px 0;
+    color: #555;
+    font-family: 'Montserrat', Arial, sans-serif;
+    z-index: 2;
+    position: relative;
+    text-transform: uppercase;
+    top: -0.2vw;
+    transform: translateX(-2%);
+    max-width: 100%;
+    word-break: break-word;
+    width: 40vw;
+}
+
 .serial {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: 1.4em;
@@ -350,12 +365,17 @@ body {
         font-size: 1.5em;
         margin-top: 8px;
         position: static;
-        transform: translateX(-3%) translateY(160%);
+        transform: translateX(-3%) translateY(170%);
     }
     .warning {
         font-size: 1em;
         width: 80vw;
-        transform: translateX(-3%) translateY(20%);
+        transform: translateX(-3%) translateY(25%);
+    }
+    .warning1 {
+        font-size: 1em;
+        width: 80vw;
+        transform: translateX(-3%) translateY(75%);
     }
     .barcode-row {
         transform: translateX(-3%) translateY(10%);
@@ -386,7 +406,11 @@ body {
     }
     .warning {
         font-size: 0.8em;
-        transform: translateY(3%) translateX(-3%);
+        transform: translateY(5%) translateX(-3%);
+    }
+    .warning1 {
+        font-size: 0.8em;
+        transform: translateY(20%) translateX(-3%);
     }
     .serial {
         font-size: 0.9em;
