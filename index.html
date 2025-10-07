@@ -1,128 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<title>KRC Carnival</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="assets/fevicon.png" />
-<link rel="stylesheet" href="styles/index.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRC Carnival</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/fevicon.png" />
+    <link rel="stylesheet" href="styles/indexdemo.css">
 </head>
+
 <body>
     <video autoplay muted loop id="bgvi">
-    <source src="assets/bgvi1.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+        <source src="assets/bgvi1.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
-<div class="container">
-    <div class="left-bar">
-    <div class="site-logo"><br><span style="font-weight:200;letter-spacing:0.16em;">       </span></div>
-    <div class="site-small"></div>
-    <img src="assets/2026.png" alt="KRC Logo" style="width: 110%; opacity: 0.85;position: relative; left: -5%;bottom: 20%;"/>
-    <div class="side-desc" style="margin-top: 0px; font-size: 0.95em;position: relative; bottom: 15%;">
-        When the Robots compete, the Ideas ignite!<br><br>
-        Join us at KRC Carnival 2k25 for some thrilling competitions. Unleash your creativity and be part of the excitement!
-    </div>
-    </div>
-    <div class="panels">
-    <a href="/contact-us/" class="panel bg5 panel-link">
-        <div class="panel-content">
-        <div class="panel-num">05</div>
-        <div class="panel-label">CONTACT US</div>
+    <div class="container">
+        <div class="left-bar">
+            <div class="site-logo"><br><span style="font-weight:200;letter-spacing:0.16em;"> </span></div>
+            <div class="site-small"></div>
+            <img src="assets/2026.png" alt="KRC Logo"
+                style="width: 110%; opacity: 0.85;position: relative; left: -5%;bottom: 20%;" />
+            <div class="side-desc" style="margin-top: 0px; font-size: 0.95em;position: relative; bottom: 15%;">
+                When the Robots compete, the Ideas ignite!<br><br>
+                Join us at KRC Carnival 2k25 for some thrilling competitions. Unleash your creativity and be part of the
+                excitement!
+            </div>
         </div>
-    </a>
-    <a href="/gallery/" class="panel bg4 panel-link">
-        <div class="panel-content">
-        <div class="panel-num">04</div>
-        <div class="panel-label">GALLERY</div>
-        </div>
-    </a>
-    <a href="/hackathon/" class="panel bg3 panel-link">
-      <video autoplay muted loop playsinline class="panel-video">
-        <source src="assets/hackathon.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div class="panel-content">
-        <div class="panel-num">03</div>
-        <div class="panel-label">HACKATHON</div>
-      </div>
-    </a>
+        <div class="panels">
+            <a href="/contact-us/" class="panel bg5 panel-link">
+                <div class="panel-content">
+                    <div class="panel-num">05</div>
+                    <div class="panel-label">CONTACT US</div>
+                </div>
+            </a>
+            <a href="/gallery/" class="panel bg4 panel-link">
+                <div class="panel-content">
+                    <div class="panel-num">04</div>
+                    <div class="panel-label">GALLERY</div>
+                </div>
+            </a>
+            <a href="/hackathon/" class="panel bg3 panel-link">
+                <video autoplay muted loop playsinline class="panel-video">
+                    <source src="assets/hackathon.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <div class="panel-content">
+                    <div class="panel-num">03</div>
+                    <div class="panel-label">HACKATHON</div>
+                </div>
+            </a>
 
-    <a href="/events/" class="panel bg2 panel-link">
-        <div class="panel-content">
-        <div class="panel-num">02</div>
-        <div class="panel-label">COMPETITIONS</div>
+            <a href="/events/" class="panel bg2 panel-link">
+                <div class="panel-content">
+                    <div class="panel-num">02</div>
+                    <div class="panel-label">COMPETITIONS</div>
+                </div>
+            </a>
+            <a href="/about/" class="panel bg1 panel-link">
+                <div class="panel-content">
+                    <div class="panel-num">01</div>
+                    <div class="panel-label">ABOUT</div>
+                </div>
+            </a>
         </div>
-    </a>
-    <a href="/about/" class="panel bg1 panel-link">
-        <div class="panel-content">
-        <div class="panel-num">01</div>
-        <div class="panel-label">ABOUT</div>
-        </div>
-    </a>
     </div>
-</div>
-<script>
-    
-    const cursor = document.querySelector('.cursor');
+    <script>
+        const cursor = document.querySelector('.cursor');
         const follower = document.querySelector('.cursor-follower');
-
 
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
-            
+
             setTimeout(() => {
                 follower.style.left = e.clientX - 10 + 'px';
                 follower.style.top = e.clientY - 10 + 'px';
             }, 100);
         });
 
-
-
-    const panels = document.querySelectorAll('a.panel');
-    panels.forEach(panel => {
-        panel.addEventListener('mouseenter', () => {
-            panels.forEach(p => p.classList.remove('active'));
-            panel.classList.add('active');
+        const panels = document.querySelectorAll('a.panel');
+        panels.forEach(panel => {
+            panel.addEventListener('mouseenter', () => {
+                panels.forEach(p => p.classList.remove('active'));
+                panel.classList.add('active');
+            });
+            panel.addEventListener('focus', () => {
+                panels.forEach(p => p.classList.remove('active'));
+                panel.classList.add('active');
+            });
         });
-        panel.addEventListener('focus', () => {
+
+        // Remove active panels on mouse leave
+        document.querySelector('.panels').addEventListener('mouseleave', () => {
             panels.forEach(p => p.classList.remove('active'));
-            panel.classList.add('active');
         });
-    });
-    // Remove active panels on mouse leave
-    document.querySelector('.panels').addEventListener('mouseleave', () => {
-        panels.forEach(p => p.classList.remove('active'));
-    });
 
 
-    // Add fade out transition on link click for non-hash links
-    const links = document.querySelectorAll('a.panel');
-    links.forEach(link => {
-        link.addEventListener('click', e => {
-            const href = link.getAttribute('href');
-            if (!href.startsWith('#')) {
-                e.preventDefault();
-                document.body.style.opacity = '0';
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 800); // match transition duration
+        // Add fade out transition on link click for non-hash links
+        const links = document.querySelectorAll('a.panel');
+        links.forEach(link => {
+            link.addEventListener('click', e => {
+                const href = link.getAttribute('href');
+                if (!href.startsWith('#')) {
+                    e.preventDefault();
+                    document.body.style.opacity = '0';
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 800); // match transition duration
+                }
+            });
+        });
+    </script>
+
+    <script>
+        window.addEventListener('pageshow', event => {
+            if (event.persisted) {
+                // Reload the page to ensure all assets including graphics load properly
+                window.location.reload();
             }
         });
-    });
-</script>
-<script>
-  window.addEventListener('pageshow', event => {
-    if (event.persisted) {
-      // Reload the page to ensure all assets including graphics load properly
-      window.location.reload();
-    }
-  });
-</script>
-
-
+    </script>
 </body>
 </html>
-
-

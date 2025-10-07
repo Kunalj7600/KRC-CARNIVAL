@@ -3,10 +3,9 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   font-family: 'Share Tech Mono', monospace;
   background: transparent;
-  /*background-image: url(/assets/bg.png); */
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -19,7 +18,6 @@ body {
   object-fit: cover;
   z-index: -1;
   background: #39383A;
-  /* fallback color */
 }
 
 body {
@@ -50,16 +48,18 @@ body {
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* MAIN CONTAINER - FIXED FOR MOBILE */
 .container {
   display: flex;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   width: 100vw;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-/* Left branding section */
+/* Left branding section - DESKTOP */
 .left-bar {
   background: rgba(220, 220, 225, 0);
   width: 300px;
@@ -73,7 +73,7 @@ body {
   backdrop-filter: blur(0px);
   min-width: 220px;
   max-width: 320px;
-  flex: 0 0 30vw;
+  flex: 0 0 auto;
   box-sizing: border-box;
 }
 
@@ -106,7 +106,7 @@ body {
   font-family: inherit;
 }
 
-/* Panel navigation */
+/* Panel navigation - DESKTOP */
 .panels {
   display: flex;
   flex: 1;
@@ -185,7 +185,7 @@ body {
   text-transform: uppercase;
 }
 
-/* Panel background images and overlays for each nav item */
+/* Panel background images and overlays */
 .panel.bg1 {
   background:
     linear-gradient(120deg, rgba(55, 58, 66, 0.33) 49%, rgba(0, 0, 0, .22) 100%),
@@ -195,7 +195,7 @@ body {
 .panel.bg2 {
   background:
     linear-gradient(120deg, rgba(55, 58, 66, 0.27) 52%, rgba(0, 0, 0, 0.19) 100%),
-    url('.../assets/car.png') center center/cover no-repeat;
+    url('../assets/car.png') center center/cover no-repeat;
 }
 
 .panel.bg3 {
@@ -215,9 +215,7 @@ body {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  /* behind content */
   pointer-events: none;
-  /* make video non-interactive */
   filter: blur(6px) brightness(0.7);
   transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -225,13 +223,11 @@ body {
 .panel.bg3:hover .panel-video,
 .panel.bg3.active .panel-video {
   filter: none;
-  /* clear filter on hover/active */
 }
 
 .panel.bg3 .panel-content {
   position: relative;
   z-index: 10;
-  /* in front of video */
   pointer-events: none;
   transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -267,8 +263,7 @@ body {
 
 .panel.bg3::before {
   background:
-    linear-gradient(120deg, rgba(55, 58, 66, 0.23) 59%, rgba(243, 8, 8, 0.781) 100%),
-
+    linear-gradient(120deg, rgba(55, 58, 66, 0.23) 59%, rgba(243, 8, 8, 0.781) 100%);
 }
 
 .panel.bg3::after {
@@ -278,7 +273,6 @@ body {
   background: linear-gradient(180deg, rgba(55, 58, 66, 0.23) 70%, rgba(243, 8, 8, 0.7) 100%);
   pointer-events: none;
   z-index: 5;
-  /* above video (1), below panel content (10) */
   opacity: 1;
   transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -300,7 +294,6 @@ body {
   flex: 2.7;
   z-index: 100;
   filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.863)) brightness(1) grayscale(0);
-  /* box-shadow: 0 10px 50px #080808; */
   clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
   transition: flex 0.65s cubic-bezier(0.7, 0, 0.2, 1), z-index 0.65s cubic-bezier(0.7, 0, 0.2, 1), filter 0.65s cubic-bezier(0.7, 0, 0.2, 1), clip-path 0.65s cubic-bezier(0.7, 0, 0.2, 1);
 }
@@ -335,135 +328,136 @@ body {
   clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
 }
 
-@media (max-width: 880px) {
-  .left-bar {
-    display: none;
-  }
-
-  .panels {
-    overflow-x: hidden;
-    /* Prevent horizontal scroll due to scaling */
-  }
-
-  a.panel {
-    clip-path: polygon(10% 0, 100% 0%, 100% 100%, 0% 100%);
-    /* Zoom in with scale */
-    transform-origin: center center;
-    transform: scale(1.1);
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .panel-content {
-    font-size: 0.87em;
-    /* Optional: counter scale text or keep as is */
-    transform-origin: center center;
-    transform: scale(1);
-  }
-}
-
-/* For smaller mobile devices */
-@media (max-width: 600px) {
-  .panel {
-    min-width: 80px;
-    transform: scale(1.15);
-    transform-origin: center center;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .panel-content {
-    font-size: 0.79em;
-    transform-origin: start start;
-    transform: scale(1);
-    align-items: start;
-  }
-
-  .container{
-    height: 30vh;
-    flex-direction: column;
-    align-items: center;
-    left: 10;
-  }
-}
-
+/* MOBILE STYLES - UPDATED */
 @media (max-width: 900px) {
   .container {
-    align-items: center;
-    width: 100vw;
-    padding: 0;
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
-
+  
   .left-bar {
-    width: 100vw !important;
+    width: 100% !important;
     max-width: none !important;
     min-width: 0 !important;
-    margin: 0 auto 20px auto !important;
+    padding: 30px 20px 20px 20px;
     align-items: center;
     text-align: center;
     position: static !important;
-    padding: 18px 4vw 10px 4vw;
+    margin: 0 !important;
     box-sizing: border-box;
   }
-}
-
-@media (max-width: 750px) {
-  .panels {
-    flex-direction: column;
-    width: 98vw;
-    height: auto;
-    align-items: center;
-    gap: 12px;
-  }
-
-  a.panel {
-    min-width: 220px !important;
-    max-width: 540px !important;
-    width: 97vw !important;
-    margin: 0 auto !important;
-    clip-path: polygon(13% 0, 100% 0, 100% 100%, 0% 100%);
-    border-radius: 13px !important;
-    margin-bottom: 14px;
-    box-shadow: 0 1px 18px #23252d35;
-  }
-
-  a.panel:not(:first-child) {
-    margin-left: 0 !important;
-  }
-
-  .panel-content {
-    font-size: 1.12em !important;
-    position: static !important;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-}
-
-@media (max-width: 500px) {
+  
   .left-bar img {
-    width: 88vw !important;
-    max-width: 220px;
+    width: 80% !important;
+    max-width: 280px;
     margin: 0 auto !important;
     display: block !important;
-    left: 0 !important;
-    bottom: 0 !important;
     position: static !important;
+    opacity: 0.9;
   }
-
+  
   .side-desc {
-    font-size: 0.92em !important;
-    margin-top: 12px !important;
+    font-size: 0.95em !important;
+    margin-top: 15px !important;
     position: static !important;
+    border-left: none;
+    text-align: center;
+    padding-left: 0;
+    border-top: 2px solid #bababa;
+    border-bottom: 2px solid #bababa;
+    padding: 10px 0;
+    width: 100%;
   }
-
+  
+  .panels {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    flex: none;
+    padding: 0 10px 20px 10px;
+    box-sizing: border-box;
+  }
+  
+  .panel {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 500px !important;
+    height: 80px;
+    margin: 8px auto !important;
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%) !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    flex: none !important;
+  }
+  
+  .panel:not(:first-child) {
+    margin-left: 0 !important;
+  }
+  
   .panel-content {
-    font-size: 0.98em !important;
-    padding: 5px 3vw !important;
+    position: static !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 0 20px;
+  }
+  
+  .panel-num {
+    font-size: 1.5em;
+  }
+  
+  .panel-label {
+    font-size: 1em;
+  }
+  
+  /* Disable hover effects on mobile */
+  .panel.active,
+  .panel:hover {
+    flex: none !important;
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%) !important;
+    filter: none;
+  }
+  
+  /* Hide cursor on mobile */
+  .cursor,
+  .cursor-follower {
+    display: none;
   }
 }
 
-@media (max-width: 360px) {
-  .panel-content {
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+  .left-bar {
+    padding: 20px 15px 15px 15px;
+  }
+  
+  .left-bar img {
+    width: 90% !important;
+    max-width: 220px;
+  }
+  
+  .side-desc {
     font-size: 0.85em !important;
-    padding: 3px 1vw !important;
+    padding: 8px 0;
+  }
+  
+  .panel {
+    height: 70px;
+    margin: 6px auto !important;
+  }
+  
+  .panel-content {
+    padding: 0 15px;
+  }
+  
+  .panel-num {
+    font-size: 1.3em;
+  }
+  
+  .panel-label {
+    font-size: 0.9em;
   }
 }
