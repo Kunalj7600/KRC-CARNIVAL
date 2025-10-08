@@ -1,0 +1,256 @@
+html,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ :root {
+    --primary: #000;
+    --accent: #fff;
+    --glow: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: #000;
+    background-image: url(./assets/background.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.1s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-follower {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.3s ease;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    padding: 2rem 4rem;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+nav.scrolled {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem 4rem;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1rem;
+    font-weight: 200;
+    letter-spacing: 8px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.logo img {
+    max-width: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+    }
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #fff;
+    }
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 300;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+
+/* .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #ff0000;
+    transition: width 0.3s ease;
+} */
+
+.nav-links a:hover {
+    color: red;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.filter {
+    z-index: -1;
+    background-color: #00000000;
+    backdrop-filter: blur(5px);
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    animation: fadeInUp 1s ease;
+    font-size: xx-large;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cta {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: transparent;
+}
+
+.cta-content h2 {
+    font-size: 3rem;
+    font-weight: 100;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-weight: 300;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.cta-button:hover {
+    color: #000;
+}
+
+.cta-button:hover::before {
+    left: 0;
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    opacity: 0.3;
+    animation: float-particle 20s infinite linear;
+}
+
+@keyframes float-particle {
+    from {
+        transform: translateY(100vh) translateX(0);
+    }
+    to {
+        transform: translateY(-100px) translateX(100px);
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem 2rem;
+    }
+    .nav-links {
+        display: none;
+    }
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .phone-model {
+        width: 250px;
+        height: 500px;
+    }
+    .phone-screen {
+        width: 230px;
+        height: 480px;
+    }
+}
