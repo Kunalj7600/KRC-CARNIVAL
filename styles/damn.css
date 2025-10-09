@@ -193,30 +193,28 @@ body::before {
 
 .sponsors{
   max-width: 600px;
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
   z-index: 10;
   margin-left:10px;
   opacity: 1.0;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 0;
 }
 
 .sponsors p{
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'Reguler';
   text-transform: uppercase;
   color: #F3F4F6;
   font-weight: 500;
-  margin-right: 10px;
   letter-spacing: 1px;
+  margin: 0;
 }
 
 .sponsors img{
-  height: 40px;
-  width: 100px;
+  height: 30px;
+  width: 80px;
 }
 
 .center-image-container {
@@ -272,7 +270,7 @@ body::before {
   z-index: 10;
   position: absolute;
   right: 25px;
-  top: 180px;
+  top: 160px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -325,13 +323,6 @@ body::before {
   color: var(--primary)
 }
 
-.dev-button{
-  position: absolute;
-  bottom: 10;
-  right: 10;
-  z-index: 1500;
-}
-
 .toggleMenu{
   display: none;
 }
@@ -343,6 +334,28 @@ body::before {
   justify-content: flex-start
 }
 
+.footer{
+  display: flex;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  z-index: 101;
+}
+
+.promo{
+  width: 150px;
+  height: 50px;
+}
+
+.promo-logo{
+  width: 150px;
+  height: 50px;
+}
+
 @media (max-width: 768px) {
   .menu-icon{
     display: block;
@@ -351,6 +364,11 @@ body::before {
 
   .menuList {
     display:none;
+  }
+
+  .logo{
+    height: 60px;
+    width: 60px;
   }
 
   .toggleMenu{
@@ -416,34 +434,78 @@ body::before {
 
   .reg-button {
     width: 100%;
+    margin-top: 15px;
+  }
+
+  .left-pane{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin-top: 40px;
   }
 
   .left-logo{
-    margin-left: 20px;
-    width: 300px;
-    height: 80px;
+    margin-left: 160px;
     margin-top: 0px;
-  }
-
-  .sponsors{
-    max-width: 200px;
-    margin-left: 0;
-    margin-top: 140px;
-  }
-
-  .sponsors p{
-    font-size: 12px;
-  }
-
-  .sponsors img{
-    height: 20px;
-    width: 60px;
+    height: 100px;
+    max-width: 300px;
   }
 
   .karu{
     letter-spacing: 0px;
     font-size: 0.8rem;
     padding-left: 0px;
+  }
+
+  .sponsors{
+    max-width: 200px;
+    margin-left: 0;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .sponsors p{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    margin: 0;
+    text-transform: lowercase;
+    font-weight: bold;
+  }
+
+  .sponsors img{
+    height: 20px;
+    width: 70px;
+  }
+
+  .footer{
+    width: 60%;
+    align-items: center;
+  }
+
+  .promo{
+    width: 70px;
+    padding-top: 10px;
+  }
+
+  .promo-logo{
+    height: 30px;
+    width: 70px;
+  }
+
+  .bhangi-full-screen{
+    height: 400px;
+    bottom: 0;
+    margin-top: 150px;
+    right: 0;
+  }
+
+  .right-pane{
+    left: 5px;
+    right: 150px;
+    bottom: 40px;
+    width: auto;
   }
 
   .prize-heading{
