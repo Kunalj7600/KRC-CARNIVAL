@@ -135,8 +135,8 @@ body::before {
 }
 
 .logo {
-  height: 120px;
-  width: 120px;
+  height: 80px;
+  width: 80px;
 }
 
 .hero {
@@ -203,7 +203,7 @@ body::before {
 }
 
 .sponsors p{
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Reguler';
   text-transform: uppercase;
   color: #F3F4F6;
@@ -351,7 +351,12 @@ body::before {
   height: 50px;
 }
 
-.promo-logo{
+.elysian-logo{
+  width: 120px;
+  height: 50px;
+}
+
+.ipu-logo{
   width: 150px;
   height: 50px;
 }
@@ -475,7 +480,7 @@ body::before {
   }
 
   .sponsors img{
-    height: 20px;
+    height: 18px;
     width: 70px;
   }
 
@@ -489,9 +494,14 @@ body::before {
     padding-top: 10px;
   }
 
-  .promo-logo{
+  .ipu-logo{
     height: 30px;
     width: 70px;
+  }
+
+  .elysian-logo{
+    height: 30px;
+    width: 60px;
   }
 
   .bhangi-full-screen{
