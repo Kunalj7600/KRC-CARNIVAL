@@ -93,7 +93,7 @@ body::before {
 }
 
 .devfolio-button{
-  z-index: 101;
+  cursor: pointer;
 }
 
 .menuList{
@@ -315,18 +315,15 @@ body::before {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 27%;
+  width: 100%;
   z-index: 101;
-}
-
-.promo{
-  width: 150px;
   height: 50px;
 }
 
 .elysian-logo{
   width: 110px;
   height: 50px;
+  margin-right: 5px;
 }
 
 .ipu-logo{
