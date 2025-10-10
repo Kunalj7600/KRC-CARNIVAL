@@ -15,43 +15,57 @@
     
   </head>
   <body>
-    <header class="site-header" role="banner">
-      <div class="left-header">
-        <span class="menu-icon" onclick="toggleMenu()">☰</span>
-        <a href="/hackathon/">
-          <img src="../assets/2026.png" alt="nimesha logo" class="logo">
-        </a>
-      </div>
-      
-      <nav class="header-nav">
-        <ul class="menuList">
-          <a href="/">HOME</a>
-          <a href="../about/">THEME</a>
-          <a target="_blank" href="../assets/Nimesha_rulebook_final.pdf">Guidelines</a>
-          <a href="../contact-us/">Contact Us</a>
-        </ul>
-        <div 
-          class="apply-button devfolio-button" 
-          data-hackathon-slug="nimesha" 
-          data-button-theme="dark"
-          style="height: 36px; width: 256px"
-        ></div>
-      </nav>
-    </header>
-    <nav class="toggle-nav">
-      <ul class="toggleMenu">
-        <li><a href="/"><img class="icon" src="../assets/home.png">HOME</a></li>
-        <li><a href="../about/"><img class="icon" src="../assets/web-design.png">THEME</a></li>
-        <li><a href="../about/"><img class="icon" src="../assets/timeline.png">Timeline</a></li>
-        <li>
-          <a href="../contact-us/"><img class="icon" src="../assets/contact-mail.png">Contact Us</a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
     <main class="hero" role="main">
+      <header class="site-header" role="banner">
+        <div class="left-header">
+          <span class="menu-icon" onclick="toggleMenu()">☰</span>
+          <a href="/hackathon/">
+            <img src="../assets/2026.png" alt="nimesha logo" class="logo">
+          </a>
+        </div>
+        
+        <nav class="header-nav">
+          <ul class="menuList">
+            <a href="/">HOME</a>
+            <a class="popup-link" href="#" id="info-link">THEME</a>
+            <a target="_blank" href="../assets/Nimesha_rulebook_final.pdf">Guidelines</a>
+            <a href="../contact-us/">Contact Us</a>
+          </ul>
+          <div 
+            class="apply-button devfolio-button" 
+            data-hackathon-slug="nimesha" 
+            data-button-theme="dark"
+            style="height: 36px; width: 256px"
+          ></div>
+        </nav>
+      </header>
+      <nav class="toggle-nav">
+        <ul class="toggleMenu">
+          <li><a href="/"><img class="icon" src="../assets/home.png">HOME</a></li>
+          <li><a class="popup-link" href="#" id="info-link"><img class="icon" src="../assets/web-design.png">THEME</a></li>
+          <li><a href="../assets/Nimesha_rulebook_final.pdf"><img class="icon" src="../assets/timeline.png">Guidelines</a></li>
+          <li>
+            <a href="../contact-us/"><img class="icon" src="../assets/contact-mail.png">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="popup" id="popupBox">
+        <div class="arrow"></div>
+        <p>The hackathon themes are: </p>
+        <ul>
+          <li>Defense & Security</li>
+          <li>Healthcare & Biotech</li>
+          <li>Industry 4.0 / IIoT</li>
+          <li>Disaster Management</li>
+          <li>Cobotics (Collaborative Robotics)</li>
+          <li>Multi-Terrain Innovation</li>
+          <li>Smart City & Automation</li>
+          <li>Open Innovation (Wildcard)</li>
+        </ul>
+      </div>
+
+      <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
       <div class="left-pane">
         <div class="karu">
           <p class="carnival">KARUYANTRA CARNIVAL</p>
@@ -129,6 +143,30 @@
         menu.classList.toggle("active");
         document.querySelector('#overlay').classList.toggle('active');
       }
+
+      const link = document.getElementById('info-link');
+      const popup = document.getElementById('popupBox');
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Get link position
+        const rect = link.getBoundingClientRect();
+
+        // Position the popup near the link
+        popup.style.top = `${rect.bottom + window.scrollY + 10}px`;
+        popup.style.left = `${rect.left + window.scrollX}px`;
+
+        // Toggle visibility
+        popup.classList.toggle('active');
+      });
+
+      // Hide popup if clicked outside
+      document.addEventListener('click', (e) => {
+        if (!popup.contains(e.target) && e.target !== link) {
+          popup.classList.remove('active');
+        }
+      });
     </script>
   </body>
 </html>
